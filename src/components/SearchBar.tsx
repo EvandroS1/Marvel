@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const SearchBar = () => {
-  
   const SearchInput = styled.input`
     background-color: #ff000053;
     border-radius: 10rem;
@@ -11,7 +10,7 @@ export const SearchBar = () => {
     padding-left: 4rem;
     outline: none;
     font-size: 18px;
-    color: red; 
+    color: red;
   `;
 
   const Wrapper = styled.div`
@@ -20,14 +19,15 @@ export const SearchBar = () => {
     justify-content: center;
     align-items: center;
     position: relative;
-    `;
+    padding-top: 2rem;
+  `;
   const WrapperSun = styled.div`
-  position: relative;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  `
+    position: relative;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `;
   const Lupa = styled.img`
     position: absolute;
     left: 15px;
@@ -35,7 +35,11 @@ export const SearchBar = () => {
   return (
     <Wrapper>
       <WrapperSun>
-        <Lupa height={25} src='src/assets/busca/Lupa/Shape@2x.png' alt="aaaaa"></Lupa>
+        <Lupa
+          height={25}
+          src="src/assets/busca/Lupa/Shape@2x.png"
+          alt="aaaaa"
+        ></Lupa>
         <SearchInput placeholder="Procure por heróis"></SearchInput>
       </WrapperSun>
     </Wrapper>

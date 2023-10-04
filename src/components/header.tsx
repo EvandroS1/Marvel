@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 const DivHeader = styled.div`
-  width: 100vw;
+  width: 100%;
 `;
 const H1Header = styled.h1`
   padding-right: 7rem;
+`;
+const PHeader = styled.p`
+  color: gray;
 `;
 
 const Header = () => {
@@ -12,10 +15,10 @@ const Header = () => {
     <DivHeader>
       <img width={400} src="/src/assets/logo/Group@3x.png" alt="Logo Marvel" />
       <H1Header> EXPLORE O UNIVERSO</H1Header>
-      <p>
-        Mergulhe no domínio Deslumbrante de todos os personagens clássicos que
+      <PHeader>
+        Mergulhe no domínio Deslumbrante de todos os PHeaderersonagens clássicos que
         você ama - e aqueles que você descobrirá em breve!
-      </p>
+      </PHeader>
     </DivHeader>
   );
 };
