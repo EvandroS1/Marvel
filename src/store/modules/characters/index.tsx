@@ -14,14 +14,15 @@ const reducer: Reducer<CharactersState> = (state = INITIAL_STATE, action) => {
     case ActionTypes.LOAD_SUCCESS:
       return {
         ...state,
-        loadign: false,
+        loading: false,
         error: false,
-        data: action.payload.data,
+        data: action.payload.data.results,
       };
     case ActionTypes.LOAD_FAILURE:
       return { ...state, loading: false, error: true, data: [] };
+      default:
+          return state;
   }
-  return state;
 };
 
 export default reducer;
