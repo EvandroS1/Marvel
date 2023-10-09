@@ -1,5 +1,6 @@
 import md5 from 'md5'
 import axios from 'axios';
+import { SearchBar } from '../components/SearchBar';
 
 
 const API_BASE_URL = 'https://gateway.marvel.com/v1/public';
@@ -14,6 +15,7 @@ const hash = getHash(timeStamp);
 const query = `ts=${timeStamp}&apikey=${PUBLIC_KEY}&hash=${hash}`
 
 const url = `${API_BASE_URL}/characters?${query}`;
+const searchUrl = `${API_BASE_URL}/characters?name=&${query}`;
 
 const api = axios.create({
   baseURL: url,

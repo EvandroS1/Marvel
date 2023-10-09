@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components"
+import { ApplicationState } from "../store";
 
 export default function FilterBar() {
-  const heroes = 20;
+  const characters = useSelector((state: ApplicationState) => state.characters.data);
+  const heroes = characters.length;
 
   const MainWrapper = styled.div`
     display: flex;

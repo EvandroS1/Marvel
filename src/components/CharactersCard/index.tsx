@@ -5,6 +5,7 @@ const MainWrapper = styled.div`
 display: flex;
 flex-direction: column;
 width: 20rem;
+cursor: pointer;
 `
 const widhtImg = {
   width: '100%',
@@ -14,11 +15,13 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 height: 4rem;
+border-top: solid 3px red;
 margin-bottom: 3rem;
 `
 const Image = styled.div`
 height: 15rem;
 overflow: hidden;
+border-radius: 2rem 2rem 0 0;
 `
 const P = styled.p`
 font-weight: 700;

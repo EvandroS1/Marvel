@@ -4,7 +4,6 @@ const DivHeader = styled.div`
   width: 100%;
 `;
 const H1Header = styled.h1`
-  padding-right: 7rem;
 `;
 const PHeader = styled.p`
   color: gray;
