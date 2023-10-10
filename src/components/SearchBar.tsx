@@ -1,17 +1,30 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { loadSearchRequest } from "../store/modules/characters/actions";
+import { loadRequest, loadSearchRequest } from "../store/modules/characters/actions";
 
-export const SearchBar = () => {
-  const load = (): void => {}
-  const [querySearch, setQuerySearch] = useState('');
+export const SearchBar: FC = () => {
+  const [querySearch, setQuerySearch] = useState("");
   const dispatch = useDispatch();
+  const inputRef = useRef<HTMLInputElement | null>(null); // Crie uma ref para o input
+  const isFocusedRef = useRef(false); // Ref para controlar o foco
+
   useEffect(() => {
-    dispatch(loadSearchRequest(querySearch));
-    console.log(querySearch);
-    
-  }, [querySearch])
+    if (isFocusedRef.current && inputRef.current) {
+      dispatch(loadSearchRequest(querySearch))
+      inputRef.current.focus(); // Restaura o foco se estiver ativo
+    }
+    if(querySearch === '') {
+      dispatch(loadRequest())
+    }
+  }, [querySearch]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuerySearch(e.target.value);
+  };
+  const handleInputFocus = () => {
+    isFocusedRef.current = true; // Atualiza a ref para indicar que o input está com foco
+  };
 
   const SearchInput = styled.input.attrs({ as: "input" })`
     background-color: #ff000053;
@@ -44,6 +57,7 @@ export const SearchBar = () => {
     position: absolute;
     left: 15px;
   `;
+
   return (
     <Wrapper>
       <WrapperSun>
@@ -52,7 +66,14 @@ export const SearchBar = () => {
           src="src/assets/busca/Lupa/Shape@2x.png"
           alt="aaaaa"
         ></Lupa>
-        <SearchInput type="text" onChange={e => setQuerySearch(e.target.value)} value={querySearch} placeholder="Procure por heróis"></SearchInput>
+        <SearchInput
+          ref={inputRef}
+          type="text"
+          value={querySearch}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
+          placeholder="Procure por heróis"
+        />
       </WrapperSun>
     </Wrapper>
   );
