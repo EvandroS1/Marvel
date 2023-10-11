@@ -4,7 +4,7 @@ import { ApplicationState } from "../../store";
 import { loadRequest } from "../../store/modules/characters/actions";
 import CharacterCard from "../CharactersCard";
 import styled from "styled-components";
-import Loading from "../loading";
+import Loading from "../Loading";
 
 const MainWrapper = styled.div`
   display: grid;
@@ -17,6 +17,8 @@ const CharactersList: React.FC = () => {
   const characters = useSelector((state: ApplicationState) => state.characters.data);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  console.log(characters);
+  
 
   useEffect(() => {
     dispatch(loadRequest());

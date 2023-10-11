@@ -2,16 +2,19 @@ import { FC, useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { loadRequest, loadSearchRequest } from "../store/modules/characters/actions";
+import {  useNavigate } from "react-router-dom";
 
 export const SearchBar: FC = () => {
   const [querySearch, setQuerySearch] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null); // Crie uma ref para o input
   const isFocusedRef = useRef(false); // Ref para controlar o foco
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (isFocusedRef.current && inputRef.current) {
       dispatch(loadSearchRequest(querySearch))
+      navigate("/")
       inputRef.current.focus(); // Restaura o foco se estiver ativo
     }
     if(querySearch === '') {
@@ -48,7 +51,7 @@ export const SearchBar: FC = () => {
   `;
   const WrapperSun = styled.div`
     position: relative;
-    width: 60%;
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,7 +66,7 @@ export const SearchBar: FC = () => {
       <WrapperSun>
         <Lupa
           height={25}
-          src="src/assets/busca/Lupa/Shape@2x.png"
+          src="/src/assets/busca/Lupa/Shape@2x.png"
           alt="aaaaa"
         ></Lupa>
         <SearchInput
