@@ -2,19 +2,20 @@ import { FC, useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { loadRequest, loadSearchRequest } from "../store/modules/characters/actions";
-import {  useNavigate } from "react-router-dom";
+import { setInputSearchValue } from "../store/modules/dados/actions";
 
 export const SearchBar: FC = () => {
   const [querySearch, setQuerySearch] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null); // Crie uma ref para o input
   const isFocusedRef = useRef(false); // Ref para controlar o foco
-  const navigate = useNavigate()
-
+  // const querySearchData: QuerySearchState = {
+  //   querySearchh: querySearch,
+  // };
   useEffect(() => {
     if (isFocusedRef.current && inputRef.current) {
       dispatch(loadSearchRequest(querySearch))
-      navigate("/")
+      dispatch(setInputSearchValue(querySearch))
       inputRef.current.focus(); // Restaura o foco se estiver ativo
     }
     if(querySearch === '') {

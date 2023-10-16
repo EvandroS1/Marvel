@@ -1,17 +1,18 @@
+import { Provider } from "react-redux";
 import styled from "styled-components";
-import "./App.css";
+import { Outlet } from "react-router-dom";
+import { SearchBar } from "./components/SearchBar";
 import FilterBar from "./components/FilterBar";
 import Header from "./components/Header";
-import { SearchBar } from "./components/SearchBar";
-import { Provider } from "react-redux";
+import CharactersList from "./components/CharactersList";
 import store from "./store";
 
-import CharactersList from "./components/CharactersList";
+const MainWrapper = styled.div`
+  padding-inline: 2rem;
+  text-align: center;
+`;
 
 function App() {
-  const MainWrapper = styled.div`
-    padding-inline: 2rem;
-  `;
 
   return (
     <Provider store={store}>
@@ -19,6 +20,7 @@ function App() {
         <Header />
         <SearchBar />
         <FilterBar />
+        <Outlet />
         <CharactersList />
       </MainWrapper>
     </Provider>

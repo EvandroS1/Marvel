@@ -6,6 +6,7 @@ import CharacterCard from "../CharactersCard";
 import styled from "styled-components";
 import Loading from "../Loading";
 
+
 const MainWrapper = styled.div`
   display: grid;
   place-items: center;

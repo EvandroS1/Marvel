@@ -4,9 +4,13 @@ import { CharactersState } from './modules/characters/types';
 
 import rootReducer from './modules/rootReducer'
 import rootSaga from './modules/rootSaga';
+import { QuerySearchState } from './modules/dados/types';
 
 export interface ApplicationState {
   characters: CharactersState
+}
+export interface DataState {
+  data: QuerySearchState
 }
 
 const sagaMiddleware = createSagaMiddleware()

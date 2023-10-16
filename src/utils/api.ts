@@ -14,14 +14,14 @@ const hash = getHash(timeStamp);
 const query = `ts=${timeStamp}&apikey=${PUBLIC_KEY}&hash=${hash}`;
 
 const url = `${API_BASE_URL}/characters?${query}`;
-const searchUrl = `${API_BASE_URL}`;
+const baseURL = `${API_BASE_URL}`;
 
 const api = axios.create({
   baseURL: url,
 });
 
-const searchApi = axios.create({
-  baseURL: searchUrl,
+const baseUrl = axios.create({
+  baseURL: baseURL,
 });
 export const queryy = query
-export { api, searchApi };
+export { api, baseUrl };

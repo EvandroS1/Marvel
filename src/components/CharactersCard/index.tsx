@@ -1,42 +1,57 @@
-import styled from "styled-components"
-import { Characters } from "../../store/modules/characters/types"
-import { Link } from "react-router-dom"
+import styled from "styled-components";
+import { Characters } from "../../store/modules/characters/types";
+import { Link } from "react-router-dom";
 
 const MainWrapper = styled.div`
-display: flex;
-flex-direction: column;
-width: 20rem;
-cursor: pointer;
-`
-const widhtImg = {
-  width: '100%',
-}
-const SecondWraper = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-between;
-height: 4rem;
-border-top: solid 3px red;
-margin-bottom: 3rem;
-`
-const Image = styled.div`
-height: 15rem;
-overflow: hidden;
-border-radius: 2rem 2rem 0 0;
-`
-const P = styled.p`
-font-weight: 700;
-`
-const Heart = styled.img `
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
   cursor: pointer;
-`
+`;
+
+const widhtImg = {
+  width: "100%",
+};
+
+const SecondWraper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  border-top: solid 3px red;
+  margin-bottom: 3rem;
+`;
+
+const Image = styled.div`
+  height: 15rem;
+  overflow: hidden;
+  border-radius: 2rem 2rem 0 0;
+`;
+
+const P = styled.p`
+  font-weight: 700;
+  color: red;
+`;
+
+const Heart = styled.img`
+  cursor: pointer;
+`;
+
+const NoUnderlineLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const CharacterCard: React.FC<{ character: Characters }> = ({ character }) => {
   return (
-      
-    <Link to={`character/${character.id}`}>
+    <NoUnderlineLink to={`character/${character.id}`}>
       <MainWrapper>
-        <Image><img style={widhtImg} src={`${character.thumbnail.path}.${character.thumbnail.extension}`} alt="" /></Image>
+        <Image>
+          <img
+            style={widhtImg}
+            src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+            alt=""
+          />
+        </Image>
         <div>
           <SecondWraper>
             <P>{character.name}</P>
@@ -44,9 +59,8 @@ const CharacterCard: React.FC<{ character: Characters }> = ({ character }) => {
           </SecondWraper>
         </div>
       </MainWrapper>
-    </Link>
-      
+    </NoUnderlineLink>
   );
 };
 
-export default CharacterCard
+export default CharacterCard;
