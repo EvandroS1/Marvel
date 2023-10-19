@@ -2,25 +2,88 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { ApplicationState } from "../store";
 import NavSearch from "../components/NavSearch";
+import styled from "styled-components";
 
+const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const HeaderWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-top: 8rem;
+  padding-inline: 8rem;
+`;
+const HeaderA = styled.div`
+width: 50%;
+`
+const HeaderB = styled.div``
+const DetailsP = styled.p`
+`
+// ------------------------GRID------------------------
+const GridContainer = styled.div`
+  display: grid;
+  margin-top: 3rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  gap: 10px; /* Espaçamento entre as células do grid */
+  `;
 
+const GridItem = styled.div`
+  padding: 0px 10px 10px 0;
+  `;
+
+const FirstRowItem = styled(GridItem)`
+  `;
+
+const SecondRowItem = styled(GridItem)`
+
+  `;
+
+const ThirdRowItem = styled(GridItem)`
+  grid-column: 1 / span 2; /* Colunas 1 e 2 na primeira linha */
+
+  `;
+const FourthRowItem = styled(GridItem)`
+  grid-column: 1 / span 2; /* Colunas 1 e 2 na primeira linha */
+
+  `;
+// ------------------------GRID------------------------
 
 const Character = () => {
-  const characters = useSelector((state: ApplicationState) => state.characters.data);
+  const characters = useSelector(
+    (state: ApplicationState) => state.characters.data
+  );
   const { id } = useParams();
-  const character = characters.filter((character) => character.id === Number(id));
+  const character = characters.filter(
+    (character) => character.id === Number(id)
+  );
   console.log(character);
-  
-  
-  
+
   return (
     <div>
       <NavSearch />
-      {character.map((character) => (
-
-       <p>{character.name}</p> 
-))}
-        {id}
+      <MainWrapper>
+          {character.map((character) => (
+        <HeaderWrapper>
+            <HeaderA>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                <h2 style={{fontSize: '2.4rem'}}>{character.name}</h2>  <img height={40} src="/src/assets/icones/heart/Path Copy 2@3x.png" alt="" />
+              </div>
+              <DetailsP>{character.description}</DetailsP>
+              <GridContainer>
+      <FirstRowItem>Quadrinhos <br/> <div style={{display: "flex", alignItems: "center", gap: "1rem" }}><img width={30} src="/src/assets/icones/book/Group@3x.png" alt="logo quadrinhos"/>{character.comics.available}</div></FirstRowItem>
+      <SecondRowItem>Filmes <br/> <div style={{display: "flex", alignItems: "center", gap: "1rem" }}><img width={30} src="/src/assets/icones/video/Shape@3x.png" alt="logo filmes"/>{character.series.available}</div></SecondRowItem>
+      <ThirdRowItem>Quadrinhos  <img width={80} src="/src/assets/review/Group 4@3x.png" alt="logo filmes"/></ThirdRowItem>
+      <FourthRowItem>Último quadrinho: ?</FourthRowItem>
+    </GridContainer>
+            </HeaderA>
+            <HeaderB >
+              <img width={500} src={`${character.thumbnail.path}.${character.thumbnail.extension}`} alt="Hero Image" />
+            </HeaderB>
+        </HeaderWrapper>
+          ))}
+      </MainWrapper>
     </div>
   );
 };

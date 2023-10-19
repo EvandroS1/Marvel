@@ -2,40 +2,48 @@ import { useSelector } from "react-redux";
 import styled from "styled-components"
 import { ApplicationState, DataState } from "../store";
 import { useDispatch } from "react-redux";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import { loadOrderbyRequest, loadSearchOrderbyRequest } from "../store/modules/characters/actions";
 
 export default function FilterBar() {
   const characters = useSelector((state: ApplicationState) => state.characters.data);
   const  querySearchValue = useSelector((state: DataState) => state.data.data)
-  const query = querySearchValue.toString()
+  const [query, setQuery] = useState('')
+  // const query = querySearchValue.toString()
   // console.log('query', query);
 
   const [orderby, setOrderby] = useState(false)
   const heroes = characters.length;
   // const queryValue =  querySearchValue
   const dispatch = useDispatch()
+  useEffect(() => {
+    setQuery(querySearchValue?.toString())
+  }, [querySearchValue])
+  
 
   const handleClick = () => {
-    if(query !== '') {
+    if(query.length === 0) {
       if (orderby === true) {
-        dispatch(loadOrderbyRequest(true))
+        dispatch(loadOrderbyRequest(orderby))
         setOrderby(false)
-        console.log('vazio');
+        console.log('false', orderby);
       } 
       if (orderby === false) {
-        dispatch(loadOrderbyRequest(false))
+        dispatch(loadOrderbyRequest(orderby))
         setOrderby(true)
+        console.log('true', orderby);
       }
-    } else {
+    } 
+    if(query.length > 0) {
       if (orderby === true) {
-        dispatch(loadSearchOrderbyRequest(true, query))
+        dispatch(loadSearchOrderbyRequest(orderby, query))
         setOrderby(false)
-        console.log('com valor');
+        console.log('false', orderby);
       } 
       if (orderby === false) {
-        dispatch(loadSearchOrderbyRequest(false, query))
+        dispatch(loadSearchOrderbyRequest(orderby, query))
         setOrderby(true)
+        console.log('true', orderby);
       }
     }
   } 

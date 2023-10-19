@@ -15,8 +15,8 @@ const Header = () => {
       <img width={400} src="/src/assets/logo/Group@3x.png" alt="Logo Marvel" />
       <H1Header> EXPLORE O UNIVERSO</H1Header>
       <PHeader>
-        Mergulhe no domínio Deslumbrante de todos os PHeaderersonagens clássicos que
-        você ama - e aqueles que você descobrirá em breve!
+        Mergulhe no domínio Deslumbrante de todos os Personagens clássicos que
+        você ama e aqueles que você descobrirá em breve!
       </PHeader>
     </DivHeader>
   );

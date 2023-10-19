@@ -6,6 +6,7 @@ import {
   loadFailure,
   loadSearchRequest,
   loadSearchOrderbyRequest,
+  loadOrderbyRequest,
 } from "./actions";
 import { ActionType } from "typesafe-actions";
 
@@ -18,18 +19,17 @@ export function* load(): any {
     yield put(loadFailure());
   }
 }
+// const url_1 =`/characters?nameStartsWith=${character}&${queryy}` 
+
 
 // retorna os personagens que começam com o valor passado no input 
 export function* loadSearch(action: ActionType<typeof loadSearchRequest>): any {
   const character = action.payload.trim();
 
   try {
-    // console.log(character);
+    // console.log('k', character);
 
-    const response = yield call(
-      baseUrl.get,
-      `/characters?nameStartsWith=${character}&${queryy}`
-    ); // Use baseUrl aqui
+    const response = yield call(baseUrl.get, `/characters?nameStartsWith=${character}&${queryy}`); // Use baseUrl aqui
     const data = response.data.data;
     yield put(loadSuccess(data));
   } catch (error) {
@@ -38,14 +38,17 @@ export function* loadSearch(action: ActionType<typeof loadSearchRequest>): any {
 }
 //ordena de a - z, z - a
 export function* loadOrderby(
-  action: ActionType<typeof loadSearchOrderbyRequest>
+  action: ActionType<typeof loadOrderbyRequest>
   ): any {
   // console.log('load', action.payload);
   const z = action.payload;
+  console.log('z', z);
+  
   let dot = "-";
   if (z == true) {
     dot = "";
-  } else {
+  } 
+  if (z == false) {
     dot = "-";
   }
 
@@ -65,12 +68,14 @@ export function* loadOrderby(
 export function* loadOrderbySearch(
   action: ActionType<typeof loadSearchOrderbyRequest>
   ): any {
-  console.log('load', action.payload);
-  const z = action.payload;
+  // console.log('load_value', action.payload);
+  const z = action.payload.z;
+  const y = action.payload.y;
   let dot = "-";
   if (z == true) {
     dot = "";
-  } else {
+  } 
+  if (z == false) {
     dot = "-";
   }
 
@@ -78,7 +83,7 @@ export function* loadOrderbySearch(
     // console.log('',querySearch);
     
     const response = yield call(
-      baseUrl.get,`/characters?orderBy=${dot}name&${queryy}`
+      baseUrl.get,`/characters?nameStartsWith=${y}&orderBy=${dot}name&${queryy}`
     ); // Use baseUrl aqui
     
     const data = response.data.data;

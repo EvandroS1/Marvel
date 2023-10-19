@@ -6,6 +6,8 @@ import FilterBar from "./components/FilterBar";
 import Header from "./components/Header";
 import CharactersList from "./components/CharactersList";
 import store from "./store";
+import { GeistProvider } from "@geist-ui/core";
+import CssBaseline from "@geist-ui/core/esm/css-baseline";
 
 const MainWrapper = styled.div`
   padding-inline: 2rem;
@@ -16,6 +18,8 @@ function App() {
 
   return (
     <Provider store={store}>
+      <GeistProvider>
+        <CssBaseline />
       <MainWrapper>
         <Header />
         <SearchBar />
@@ -23,6 +27,7 @@ function App() {
         <Outlet />
         <CharactersList />
       </MainWrapper>
+      </GeistProvider>
     </Provider>
   );
 }

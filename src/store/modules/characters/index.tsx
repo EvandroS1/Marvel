@@ -13,7 +13,7 @@ const reducer: Reducer<CharactersState> = (state = INITIAL_STATE, action) => {
       return { ...state, loading: true };
     case ActionTypes.LOAD_SEARCH_REQUEST:
       return { ...state, loading: true };
-    case ActionTypes.LOAD_SEARCH_OREDERBY_REQUEST:
+    case ActionTypes.LOAD_SEARCH_OREDERBY_VALUE_REQUEST:
       return { ...state, loading: true };
     case ActionTypes.LOAD_SUCCESS:
       return {

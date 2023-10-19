@@ -5,6 +5,7 @@ import { loadRequest } from "../../store/modules/characters/actions";
 import CharacterCard from "../CharactersCard";
 import styled from "styled-components";
 import Loading from "../Loading";
+import Pagination from "../Pagination";
 
 
 const MainWrapper = styled.div`
@@ -18,8 +19,17 @@ const CharactersList: React.FC = () => {
   const characters = useSelector((state: ApplicationState) => state.characters.data);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  console.log(characters);
+  // console.log(characters);
+  const [currentPage, setCurrentPage] = useState(1);
+  const heroesPerPage = 8;
   
+  const indexOfLastHero = currentPage * heroesPerPage;
+  const indexOfFirstHero = indexOfLastHero - heroesPerPage;
+  const currentHeroes = characters.slice(indexOfFirstHero, indexOfLastHero);
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     dispatch(loadRequest());
@@ -39,9 +49,14 @@ const CharactersList: React.FC = () => {
         <Loading />
       ) : (
         <MainWrapper>
-          {characters.map((character) => (
+          {currentHeroes.map((character) => (
             <CharacterCard key={character.id} character={character} />
           ))}
+          <Pagination
+            heroesPerPage={heroesPerPage}
+            totalHeroes={characters.length}
+            paginate={paginate}
+          />
         </MainWrapper>
       )}
     </div>

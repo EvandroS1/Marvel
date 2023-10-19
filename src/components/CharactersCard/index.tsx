@@ -5,9 +5,17 @@ import { Link } from "react-router-dom";
 const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
+  border-radius: 2rem;
   width: 20rem;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: 500ms;
+    box-shadow: 0 0 4px black;
+  }
 `;
+
 
 const widhtImg = {
   width: "100%",

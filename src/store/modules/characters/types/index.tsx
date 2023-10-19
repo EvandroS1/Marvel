@@ -4,6 +4,14 @@ export interface Characters {
   thumbnail: {
     path: string,
     extension: string
+  };
+  description: string;
+  comics: {
+    available: number,
+  };
+  series: {
+    available: number,
+    
   }
 }
 
