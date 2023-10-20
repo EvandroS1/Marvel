@@ -15,6 +15,8 @@ export function* load(): any {
     const response = yield call(api.get, "");
     const data = response.data.data;
     yield put(loadSuccess(data));
+    console.log('load');
+    
   } catch (error) {
     yield put(loadFailure());
   }
@@ -32,6 +34,7 @@ export function* loadSearch(action: ActionType<typeof loadSearchRequest>): any {
     const response = yield call(baseUrl.get, `/characters?nameStartsWith=${character}&${queryy}`); // Use baseUrl aqui
     const data = response.data.data;
     yield put(loadSuccess(data));
+
   } catch (error) {
     yield put(loadFailure());
   }

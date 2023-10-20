@@ -62,10 +62,10 @@ const Character = () => {
 
   return (
     <div>
-      <NavSearch />
+      <NavSearch/>
       <MainWrapper>
-          {character.map((character) => (
-        <HeaderWrapper>
+          {character.map((character) => ( 
+        <HeaderWrapper key={character.id}>
             <HeaderA>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                 <h2 style={{fontSize: '2.4rem'}}>{character.name}</h2>  <img height={40} src="/src/assets/icones/heart/Path Copy 2@3x.png" alt="" />

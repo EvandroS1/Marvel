@@ -22,7 +22,7 @@ function App() {
         <CssBaseline />
       <MainWrapper>
         <Header />
-        <SearchBar />
+        <SearchBar ishome={true}/>
         <FilterBar />
         <Outlet />
         <CharactersList />

@@ -4,7 +4,11 @@ import styled from "styled-components";
 import { loadRequest, loadSearchRequest } from "../store/modules/characters/actions";
 import { setInputSearchValue } from "../store/modules/dados/actions";
 
-export const SearchBar: FC = () => {
+interface SearchBarProps  {
+  ishome: boolean
+}
+
+export const SearchBar: FC<SearchBarProps> = ({ishome}) => {
   const [querySearch, setQuerySearch] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null); // Crie uma ref para o input
@@ -18,7 +22,7 @@ export const SearchBar: FC = () => {
       dispatch(setInputSearchValue(querySearch))
       inputRef.current.focus(); // Restaura o foco se estiver ativo
     }
-    if(querySearch === '') {
+    if(querySearch === '' && ishome === true) {
       dispatch(loadRequest())
     }
   }, [querySearch]);

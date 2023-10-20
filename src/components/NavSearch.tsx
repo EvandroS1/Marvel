@@ -1,18 +1,20 @@
 import styled from "styled-components"
 import { SearchBar } from "./SearchBar"
 import { Link } from "react-router-dom"
+import { FC } from "react"
 
 const Nav = styled.div`
 display: flex;
 width: 100%;
 justify-content: space-between;
 `
-
-export default function NavSearch() {
+const NavSearch = () => {
+  
   return (
     <Nav>
         <Link to='/'><img height={140} src="/src/assets/logo/Group@3x.png" alt="marvel logo" /></Link>
-        < SearchBar />
+        < SearchBar ishome={false}/>
       </Nav>
   )
 }
+export default NavSearch;

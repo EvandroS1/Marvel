@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { Characters } from "../../store/modules/characters/types";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setInputSearchValue } from "../../store/modules/dados/actions";
+
 
 const MainWrapper = styled.div`
   display: flex;
@@ -34,24 +37,31 @@ const Image = styled.div`
   height: 15rem;
   overflow: hidden;
   border-radius: 2rem 2rem 0 0;
-`;
+  `;
 
 const P = styled.p`
   font-weight: 700;
   color: red;
-`;
+  `;
 
 const Heart = styled.img`
   cursor: pointer;
-`;
+  `;
 
 const NoUnderlineLink = styled(Link)`
   text-decoration: none;
-`;
+  `;
 
 const CharacterCard: React.FC<{ character: Characters }> = ({ character }) => {
+  const dispatch = useDispatch()
+  const handleClick = () => {
+    dispatch(setInputSearchValue(character.name))
+    console.log('character name', character.name);
+    
+    
+  }
   return (
-    <NoUnderlineLink to={`character/${character.id}`}>
+    <NoUnderlineLink onClick={() => handleClick()} to={`character/${character.id}`}>
       <MainWrapper>
         <Image>
           <img
