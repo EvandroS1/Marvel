@@ -14,7 +14,7 @@ const reducer: Reducer<QuerySearchState> = (state = INITIAL_STATE, action) => {
     case ActionDataTypes.SAVE_SEARCH_INPUT_DATA:
       return { ...state, loading: false};
       case ActionDataTypes.SAVE_SUCCESS:
-        console.log('payload',action.payload);
+        // console.log('payload',action.payload);
         
         return { ...state, loading: false, data: action.payload.data}
     default:

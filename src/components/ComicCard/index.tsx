@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { Characters } from "../../store/modules/characters/types";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setInputSearchValue } from "../../store/modules/dados/actions";
+import { Comics } from "../../store/modules/comics/types";
+// import { Link } from "react-router-dom";
 
 
 const MainWrapper = styled.div`
@@ -47,41 +45,31 @@ const P = styled.p`
 const Heart = styled.img`
   cursor: pointer;
   `;
+  // const NoUnderlineLink = styled(Link)`
+  // text-decoration: none;
+  // `;
 
-const NoUnderlineLink = styled(Link)`
-  text-decoration: none;
-  `;
-
-const CharacterCard: React.FC<{ character: Characters }> = ({ character }) => {
-  // const id = '1009149'
-  const dispatch = useDispatch()
-  const handleClick = () => {
-    dispatch(setInputSearchValue(character.name))
-    // dispatch(loadComicsRequest(id));
-
-    // console.log('character name', character.name);
-    
-    
-  }
+const comicCard: React.FC<{ comic: Comics }> = ({ comic }) => {
+  
   return (
-    <NoUnderlineLink onClick={() => handleClick()} to={`character/${character.id}`}>
+    // <NoUnderlineLink onClick={() => handleClick()} to={`character/${comic.id}`}>
       <MainWrapper>
         <Image>
           <img
             style={widhtImg}
-            src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+            src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
             alt=""
           />
         </Image>
         <div>
           <SecondWraper>
-            <P>{character.name}</P>
+            <P>{comic.title}</P>
             <Heart height={25} src="../../../src/assets/icones/heart/Path Copy 2@3x.png" alt="" />
           </SecondWraper>
         </div>
       </MainWrapper>
-    </NoUnderlineLink>
+      // </NoUnderlineLink>
   );
 };
 
-export default CharacterCard;
+export default comicCard;

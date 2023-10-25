@@ -15,7 +15,7 @@ export function* load(): any {
     const response = yield call(api.get, "");
     const data = response.data.data;
     yield put(loadSuccess(data));
-    console.log('load');
+    // console.log('load');
     
   } catch (error) {
     yield put(loadFailure());
@@ -45,7 +45,7 @@ export function* loadOrderby(
   ): any {
   // console.log('load', action.payload);
   const z = action.payload;
-  console.log('z', z);
+  // console.log('z', z);
   
   let dot = "-";
   if (z == true) {

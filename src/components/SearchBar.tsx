@@ -1,14 +1,17 @@
 import { FC, useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { loadRequest, loadSearchRequest } from "../store/modules/characters/actions";
+import {
+  loadRequest,
+  loadSearchRequest,
+} from "../store/modules/characters/actions";
 import { setInputSearchValue } from "../store/modules/dados/actions";
 
-interface SearchBarProps  {
-  ishome: boolean
+interface SearchBarProps {
+  ishome: boolean;
 }
 
-export const SearchBar: FC<SearchBarProps> = ({ishome}) => {
+export const SearchBar: FC<SearchBarProps> = ({ ishome }) => {
   const [querySearch, setQuerySearch] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null); // Crie uma ref para o input
@@ -18,12 +21,12 @@ export const SearchBar: FC<SearchBarProps> = ({ishome}) => {
   // };
   useEffect(() => {
     if (isFocusedRef.current && inputRef.current) {
-      dispatch(loadSearchRequest(querySearch))
-      dispatch(setInputSearchValue(querySearch))
+      dispatch(loadSearchRequest(querySearch));
+      dispatch(setInputSearchValue(querySearch));
       inputRef.current.focus(); // Restaura o foco se estiver ativo
     }
-    if(querySearch === '' && ishome === true) {
-      dispatch(loadRequest())
+    if (querySearch === "" && ishome === true) {
+      dispatch(loadRequest());
     }
   }, [querySearch]);
 

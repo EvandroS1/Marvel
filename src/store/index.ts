@@ -5,12 +5,16 @@ import { CharactersState } from './modules/characters/types';
 import rootReducer from './modules/rootReducer'
 import rootSaga from './modules/rootSaga';
 import { QuerySearchState } from './modules/dados/types';
+import { ComicsState } from './modules/comics/types';
 
 export interface ApplicationState {
   characters: CharactersState
 }
 export interface DataState {
   data: QuerySearchState
+}
+export interface ComicGlobalState {
+  comics: ComicsState
 }
 
 const sagaMiddleware = createSagaMiddleware()

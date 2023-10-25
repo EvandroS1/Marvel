@@ -4,6 +4,8 @@ import { ActionTypes } from './characters/actionTypes'
 import { load, loadOrderby, loadOrderbySearch, loadSearch } from './characters/sagas'
 import { saveInputData } from './dados/sagas'
 import { ActionDataTypes } from './dados/actionTypes'
+import { ActionComicsTypes } from './comics/actionTypes'
+import { loadComics } from './comics/sagas'
 
 export default function* rootSaga(): any {
   return yield all([
@@ -12,5 +14,7 @@ export default function* rootSaga(): any {
     takeLatest(ActionTypes.LOAD_OREDERBY_REQUEST, loadOrderby),
     takeLatest(ActionTypes.LOAD_SEARCH_OREDERBY_VALUE_REQUEST, loadOrderbySearch),
     takeLatest(ActionDataTypes.SAVE_SEARCH_INPUT_DATA, saveInputData),
+    takeLatest(ActionDataTypes.SAVE_SEARCH_INPUT_DATA, saveInputData),
+    takeLatest(ActionComicsTypes.LOAD_REQUEST_CHARACTER_COMICS, loadComics),
   ])
 }
