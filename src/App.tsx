@@ -1,11 +1,11 @@
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 import { SearchBar } from "./components/SearchBar";
 import FilterBar from "./components/FilterBar";
 import Header from "./components/Header";
 import CharactersList from "./components/CharactersList";
-import store, { ComicGlobalState } from "./store";
+import store from "./store";
 import { GeistProvider } from "@geist-ui/core";
 import CssBaseline from "@geist-ui/core/esm/css-baseline";
 
