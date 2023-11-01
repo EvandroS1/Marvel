@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 import { SearchBar } from "./components/SearchBar";
 import FilterBar from "./components/FilterBar";
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import CharactersList from "./components/CharactersList";
 import store from "./store";
 import { GeistProvider } from "@geist-ui/core";
@@ -21,7 +21,7 @@ function App() {
       <GeistProvider>
         <CssBaseline />
       <MainWrapper>
-        <Header />
+        {/* <Header /> */}
         <SearchBar ishome={true}/>
         <FilterBar />
         <Outlet />
