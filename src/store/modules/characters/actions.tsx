@@ -4,12 +4,12 @@ import { ActionTypes } from "./actionTypes";
 
 export const loadRequest = () => action(ActionTypes.LOAD_REQUEST);
 
-// vai na função loadSearch do sagas
+//  vai na função loadSearch do sagas
 export const loadSearchRequest = (querySearch: string) => action(ActionTypes.LOAD_SEARCH_REQUEST, querySearch);
 
 export const loadSearchByRequest = (id: string) => action(ActionTypes.LOAD_SEARCH_REQUEST_BY_ID, id);
 
-// vai na função loadOrderbySearch do sagas
+//  vai na função loadOrderbySearch do sagas
 export const loadOrderbyRequest = (z: boolean) => action(ActionTypes.LOAD_OREDERBY_REQUEST, z);
 
 
