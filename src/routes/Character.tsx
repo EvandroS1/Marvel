@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { ApplicationState } from "../store";
+import { ApplicationState, DataState } from "../store";
 import NavSearch from "../components/NavSearch";
 import styled from "styled-components";
 import { loadComicsRequest } from "../store/modules/comics/actions";
 import ComicList from "../components/ComicList";
+import { useEffect } from "react";
+import { loadSearchByRequest } from "../store/modules/characters/actions";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -50,12 +52,27 @@ const Character = () => {
   const characters = useSelector(
     (state: ApplicationState) => state.characters.data
   );
+  const serachValue = useSelector(
+    (state: DataState) => state.data.data
+  );
+  console.log('serachvalue', serachValue);
+  console.log('heroes', characters);
+  
   const { id } = useParams();
   const dispatch = useDispatch();
 
   if (id) {
     dispatch(loadComicsRequest(id));
   }
+  useEffect(() => {
+    if (id) {
+      dispatch(loadSearchByRequest(id));
+      console.log("foi");
+      
+    }
+    
+  }, [])
+  
 
   const character = characters.filter(
     (character) => character.id === Number(id)

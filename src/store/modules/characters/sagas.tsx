@@ -7,6 +7,7 @@ import {
   loadSearchRequest,
   loadSearchOrderbyRequest,
   loadOrderbyRequest,
+  loadSearchByRequest,
 } from "./actions";
 import { ActionType } from "typesafe-actions";
 
@@ -32,6 +33,20 @@ export function* loadSearch(action: ActionType<typeof loadSearchRequest>): any {
     // console.log('k', character);
 
     const response = yield call(baseUrl.get, `/characters?nameStartsWith=${character}&${queryy}`); // Use baseUrl aqui
+    const data = response.data.data;
+    yield put(loadSuccess(data));
+
+  } catch (error) {
+    yield put(loadFailure());
+  }
+}
+export function* loadSearchId(action: ActionType<typeof loadSearchByRequest>): any {
+  const id = action.payload;
+
+  try {
+    // console.log('k', character);
+
+    const response = yield call(baseUrl.get, `/characters/${id}?${queryy}`); // Use baseUrl aqui
     const data = response.data.data;
     yield put(loadSuccess(data));
 

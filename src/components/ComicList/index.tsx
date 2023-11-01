@@ -11,7 +11,7 @@ const MainWrapper = styled.div`
   display: grid;
   place-items: center;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: 2rem;
+  margin-top: 14rem;
 `;
 
 const ComicList: React.FC = () => {
