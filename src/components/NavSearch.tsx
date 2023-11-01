@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { SearchBar } from "./SearchBar"
 import { Link } from "react-router-dom"
-import { FC } from "react"
 
 const Nav = styled.div`
 display: flex;
