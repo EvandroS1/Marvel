@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 const DivHeader = styled.div`
   width: 100%;
 `;
@@ -10,6 +9,7 @@ const PHeader = styled.p`
 `;
 
 const Header = () => {
+  
   return (
     <DivHeader>
       <img width={400} src="/src/assets/logo/Group@3x.png" alt="Logo Marvel" />
