@@ -26,6 +26,8 @@ const reducer: Reducer<CharactersState> = (state = INITIAL_STATE, action) => {
       };
     case ActionTypes.LOAD_FAILURE:
       return { ...state, loading: false, error: true, data: [] };
+    case ActionTypes.SET_INNITIAL:
+      return { ...state, loading: true, error: false, data: [] };
     default:
       return state;
   }

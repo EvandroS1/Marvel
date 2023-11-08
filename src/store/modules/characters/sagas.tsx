@@ -22,6 +22,11 @@ export function* load(): any {
     yield put(loadFailure());
   }
 }
+
+export function* setNone(): any {
+  console.log('dataa');
+  
+}
 // const url_1 =`/characters?nameStartsWith=${character}&${queryy}` 
 
 

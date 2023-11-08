@@ -1,4 +1,4 @@
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 import { SearchBar } from "./components/SearchBar";
@@ -12,7 +12,7 @@ import CssBaseline from "@geist-ui/core/esm/css-baseline";
 const MainWrapper = styled.div`
   padding-inline: 2rem;
   text-align: center;
-`;
+  `;
 
 function App() {
 

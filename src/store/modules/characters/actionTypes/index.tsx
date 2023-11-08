@@ -6,4 +6,5 @@ export enum ActionTypes {
   LOAD_SEARCH_OREDERBY_VALUE_REQUEST = '@characters/LOAD_SEARCH_OREDERBY_VALUE_REQUEST',
   LOAD_SUCCESS = '@characters/LOAD_SUCCESS',
   LOAD_FAILURE = '@characters/LOAD_FAILURE',
+  SET_INNITIAL = '@characters/SET_INNITIAL',
 }

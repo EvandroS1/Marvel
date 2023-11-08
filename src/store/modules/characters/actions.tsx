@@ -4,8 +4,12 @@ import { ActionTypes } from "./actionTypes";
 
 export const loadRequest = () => action(ActionTypes.LOAD_REQUEST);
 
+
+export const setInnitial = () => action(ActionTypes.SET_INNITIAL);
+
 //  vai na função loadSearch do sagas
 export const loadSearchRequest = (querySearch: string) => action(ActionTypes.LOAD_SEARCH_REQUEST, querySearch);
+
 
 export const loadSearchByRequest = (id: string) => action(ActionTypes.LOAD_SEARCH_REQUEST_BY_ID, id);
 
