@@ -1,4 +1,4 @@
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 import { SearchBar } from "./components/SearchBar";
