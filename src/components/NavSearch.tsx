@@ -11,10 +11,11 @@ justify-content: space-between;
 `
 const NavSearch = () => {
   const dispatch = useDispatch()
+  const logo = "/src/assets/logo/Group@3x.png"
   
   return (
     <Nav>
-        <Link to='/' onClick={() => dispatch(setNone())}><img height={140} src="/src/assets/logo/Group@3x.png" alt="marvel logo" /></Link>
+        <Link to='/' onClick={() => dispatch(setNone())}><img height={140} src={logo} alt="marvel logo" /></Link>
         < SearchBar ishome={false}/>
       </Nav>
   )
