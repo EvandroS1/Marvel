@@ -12,7 +12,7 @@ const Header = () => {
   
   return (
     <DivHeader>
-      <img width={400} src="src/assets/logo/Group@3x.png" alt="Logo Marvel" />
+      <img width={400} src="assets/logo/Group@3x.png" alt="Logo Marvel" />
       <H1Header> EXPLORE O UNIVERSO</H1Header>
       <PHeader>
         Mergulhe no domínio Deslumbrante de todos os Personagens clássicos que

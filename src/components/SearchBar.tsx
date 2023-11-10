@@ -28,6 +28,9 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome }) => {
     if (querySearch === "" && ishome === true) {
       dispatch(loadRequest());
     }
+    if (querySearch === "" && ishome === false) {
+      
+    }
   }, [querySearch]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
