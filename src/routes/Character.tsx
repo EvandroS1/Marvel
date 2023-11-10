@@ -40,12 +40,6 @@ const FirstRowItem = styled(GridItem)``;
 
 const SecondRowItem = styled(GridItem)``;
 
-const ThirdRowItem = styled(GridItem)`
-  grid-column: 1 / span 2; /* Colunas 1 e 2 na primeira linha */
-`;
-const FourthRowItem = styled(GridItem)`
-  grid-column: 1 / span 2; /* Colunas 1 e 2 na primeira linha */
-`;
 // ------------------------GRID------------------------
 
 const Character = () => {
@@ -94,11 +88,7 @@ const Character = () => {
                 }}
               >
                 <h2 style={{ fontSize: "2.4rem" }}>{character.name}</h2>{" "}
-                <img
-                  height={40}
-                  src="/assets/icones/heart/Path Copy 2@3x.png"
-                  alt=""
-                />
+                
               </div>
               <DetailsP>{character.description}</DetailsP>
               <GridContainer>
@@ -136,15 +126,7 @@ const Character = () => {
                     {character.series.available}
                   </div>
                 </SecondRowItem>
-                <ThirdRowItem>
-                  Quadrinhos{" "}
-                  <img
-                    width={80}
-                    src="/assets/review/Group 4@3x.png"
-                    alt="logo filmes"
-                  />
-                </ThirdRowItem>
-                <FourthRowItem>Último quadrinho: ?</FourthRowItem>
+                
               </GridContainer>
             </HeaderA>
             <HeaderB>

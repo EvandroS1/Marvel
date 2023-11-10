@@ -1,6 +1,7 @@
 import { FC, useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 import {
   loadRequest,
   loadSearchRequest,
@@ -16,6 +17,7 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome }) => {
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null); // Crie uma ref para o input
   const isFocusedRef = useRef(false); // Ref para controlar o foco
+  const navigate = useNavigate();
   // const querySearchData: QuerySearchState = {
   //   querySearchh: querySearch,
   // };
@@ -28,13 +30,14 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome }) => {
     if (querySearch === "" && ishome === true) {
       dispatch(loadRequest());
     }
-    if (querySearch === "" && ishome === false) {
-      
-    }
+    
   }, [querySearch]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuerySearch(e.target.value);
+    if (ishome === false) {
+      navigate('/');
+    }
   };
   const handleInputFocus = () => {
     isFocusedRef.current = true; // Atualiza a ref para indicar que o input está com foco

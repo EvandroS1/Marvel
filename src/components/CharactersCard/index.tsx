@@ -9,9 +9,10 @@ const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
-  border-radius: 2rem;
+  border-radius: 2rem 2rem 0 0 ;
   width: 20rem;
   cursor: pointer;
+  border: 1px solid rgba(255, 0, 0, 0.322);
   &:hover {
     transform: scale(1.1);
     transition: 500ms;
@@ -27,10 +28,11 @@ const widhtImg = {
 const SecondWraper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  background-color: #f8d1d1;
   height: 4rem;
   border-top: solid 3px red;
-  margin-bottom: 3rem;
+  padding-bottom: 3rem;
 `;
 
 const Image = styled.div`
@@ -42,10 +44,6 @@ const Image = styled.div`
 const P = styled.p`
   font-weight: 700;
   color: red;
-  `;
-
-const Heart = styled.img`
-  cursor: pointer;
   `;
 
 const NoUnderlineLink = styled(Link)`
@@ -76,7 +74,6 @@ const CharacterCard: React.FC<{ character: Characters }> = ({ character }) => {
         <div>
           <SecondWraper>
             <P>{character.name}</P>
-            <Heart height={25} src="/assets/icones/heart/Path Copy 2@3x.png" alt="" />
           </SecondWraper>
         </div>
       </MainWrapper>
