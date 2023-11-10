@@ -98,12 +98,12 @@ export default function FilterBar() {
       <WrapperA><p>Encontrados {heroes} heróis</p></WrapperA>
       <WrapperB>
         <FirstWrapperB>
-          <ToggleImg height={25} src="/src/assets/icones/heroi/noun_Superhero_2227044@3x.png" alt="simbolo de heroi" />
+          <ToggleImg height={25} src="/assets/icones/heroi/noun_Superhero_2227044@3x.png" alt="simbolo de heroi" />
           <FirstWrapperBA style={{color: 'red', textDecoration: 'none'}} onClick={() => handleClick()}>Ordenar por nome - A/Z</FirstWrapperBA>
         </FirstWrapperB>
-        <SecondWrapperB><ToggleImg height={30} src="/src/assets/toggle/Group 2@3x.png" alt="" /></SecondWrapperB>
+        <SecondWrapperB><ToggleImg height={30} src="/assets/toggle/Group 2@3x.png" alt="" /></SecondWrapperB>
         <ThirdWrapperB>
-          <img height={20} src="/src/assets/icones/heart/Path Copy 7@3x.png" alt="" />
+          <img height={20} src="/assets/icones/heart/Path Copy 7@3x.png" alt="" />
           <p>Somente favoritos</p>
         </ThirdWrapperB>
       </WrapperB>

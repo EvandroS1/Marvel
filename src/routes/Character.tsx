@@ -96,7 +96,7 @@ const Character = () => {
                 <h2 style={{ fontSize: "2.4rem" }}>{character.name}</h2>{" "}
                 <img
                   height={40}
-                  src="/src/assets/icones/heart/Path Copy 2@3x.png"
+                  src="/assets/icones/heart/Path Copy 2@3x.png"
                   alt=""
                 />
               </div>
@@ -113,7 +113,7 @@ const Character = () => {
                   >
                     <img
                       width={30}
-                      src="/src/assets/icones/book/Group@3x.png"
+                      src="/assets/icones/book/Group@3x.png"
                       alt="logo quadrinhos"
                     />
                     {character.comics.available}
@@ -130,7 +130,7 @@ const Character = () => {
                   >
                     <img
                       width={30}
-                      src="/src/assets/icones/video/Shape@3x.png"
+                      src="/assets/icones/video/Shape@3x.png"
                       alt="logo filmes"
                     />
                     {character.series.available}
@@ -140,7 +140,7 @@ const Character = () => {
                   Quadrinhos{" "}
                   <img
                     width={80}
-                    src="/src/assets/review/Group 4@3x.png"
+                    src="/assets/review/Group 4@3x.png"
                     alt="logo filmes"
                   />
                 </ThirdRowItem>

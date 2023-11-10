@@ -11,7 +11,7 @@ justify-content: space-between;
 `
 const NavSearch = () => {
   const dispatch = useDispatch()
-  const logo = "/src/assets/logo/Group@3x.png"
+  const logo = "/assets/logo/Group@3x.png"
   
   return (
     <Nav>

@@ -76,7 +76,7 @@ const CharacterCard: React.FC<{ character: Characters }> = ({ character }) => {
         <div>
           <SecondWraper>
             <P>{character.name}</P>
-            <Heart height={25} src="../../../src/assets/icones/heart/Path Copy 2@3x.png" alt="" />
+            <Heart height={25} src="/assets/icones/heart/Path Copy 2@3x.png" alt="" />
           </SecondWraper>
         </div>
       </MainWrapper>

@@ -64,7 +64,7 @@ const comicCard: React.FC<{ comic: Comics }> = ({ comic }) => {
         <div>
           <SecondWraper>
             <P>{comic.title}</P>
-            <Heart height={25} src="../../../src/assets/icones/heart/Path Copy 2@3x.png" alt="" />
+            <Heart height={25} src="/assets/icones/heart/Path Copy 2@3x.png" alt="" />
           </SecondWraper>
         </div>
       </MainWrapper>

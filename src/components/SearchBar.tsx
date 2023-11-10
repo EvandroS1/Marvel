@@ -77,7 +77,7 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome }) => {
       <WrapperSun>
         <Lupa
           height={25}
-          src="/src/assets/busca/Lupa/Shape@2x.png"
+          src="/assets/busca/Lupa/Shape@2x.png"
           alt="aaaaa"
         ></Lupa>
         <SearchInput

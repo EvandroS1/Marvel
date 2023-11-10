@@ -13,7 +13,7 @@ position: relative;
 export default function loading() {
   return (
     <MainWrapper>
-      <LoadingImg width={500} src="/src/assets/loading/loading4.gif" alt="" />
+      <LoadingImg width={500} src="/assets/loading/loading4.gif" alt="" />
     </MainWrapper>
     )
 }
