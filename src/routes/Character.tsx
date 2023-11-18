@@ -5,24 +5,52 @@ import NavSearch from "../components/NavSearch";
 import styled from "styled-components";
 import { loadComicsRequest } from "../store/modules/comics/actions";
 import ComicList from "../components/ComicList";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { loadSearchByRequest } from "../store/modules/characters/actions";
+import CharactersList from "../components/CharactersList";
+import Footer from "../components/Footer";
+
+const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: url("/public/assets/backCharacter.jpg");
+  background-repeat: repeat; /* Esta linha faz a imagem se repetir para cobrir completamente o contêiner */
+`;
+
+
 
 const MainWrapper = styled.div`
+width: 80%;
   display: flex;
   flex-direction: column;
-`;
+  padding-inline: 8rem;
+  `;
 const HeaderWrapper = styled.div`
+background-color: white;
   display: grid;
+  justify-content: center;
+  align-items: center;
   grid-template-columns: 50% 50%;
   margin-top: 8rem;
-  padding-inline: 8rem;
+  border-radius: 3rem;
+  height: 40rem;
+  /* width: 100%; */
 `;
 const HeaderA = styled.div`
-  width: 50%;
+display: flex;
+flex-direction: column;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
 `;
-const HeaderB = styled.div``;
+const HeaderB = styled.div`
+display: flex;
+flex-direction: column;
+  justify-content: center;
+  align-items: center;`;
 const DetailsP = styled.p``;
+const HeaderBImage = styled.img`
+border-radius: 3rem;`;
 // ------------------------GRID------------------------
 const GridContainer = styled.div`
   display: grid;
@@ -46,12 +74,11 @@ const Character = () => {
   const characters = useSelector(
     (state: ApplicationState) => state.characters.data
   );
-  const serachValue = useSelector(
-    (state: DataState) => state.data.data
-  );
-  console.log('serachvalue', serachValue);
-  console.log('heroes', characters);
   
+  const serachValue = useSelector((state: DataState) => state.data.data);
+  console.log("serachvalue", serachValue);
+  console.log("heroes", characters);
+
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -62,85 +89,104 @@ const Character = () => {
     if (id) {
       dispatch(loadSearchByRequest(id));
       console.log("foi");
-      
     }
-    
-  }, [])
-  
+  }, []);
 
   const character = characters.filter(
     (character) => character.id === Number(id)
   );
+  const [search, setSearch] = useState<boolean>(false)
+  const [primeiraAtt, setPrimeiraAtt] = useState<boolean>(true)
+  useEffect(() => {
+    if(!primeiraAtt){
+      setSearch(true)
+    }else{
+      setPrimeiraAtt(false)
+    }
+  }, [characters.values])
+  // if (characters.length > 2) {
+  //   search = true;
+  // }
+  // if (characters.length === 1) {
+  //   search = false;
+  // }
   // console.log('kl',character);
 
   return (
-    <div>
-      <NavSearch />
-      <MainWrapper>
-        {character.map((character) => (
-          <HeaderWrapper key={character.id}>
-            <HeaderA>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <h2 style={{ fontSize: "2.4rem" }}>{character.name}</h2>{" "}
-                
-              </div>
-              <DetailsP>{character.description}</DetailsP>
-              <GridContainer>
-                <FirstRowItem>
-                  Quadrinhos <br />{" "}
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "1rem",
-                    }}
-                  >
-                    <img
-                      width={30}
-                      src="/assets/icones/book/Group@3x.png"
-                      alt="logo quadrinhos"
+      <div>
+        <NavSearch isNavSearch={false} />
+            <Background>
+        {search ? (
+          <CharactersList />
+        ) : (
+          <div>
+            <MainWrapper>
+              {character.map((character) => (
+                <HeaderWrapper key={character.id}>
+                  <HeaderA>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <h2 style={{ fontSize: "2.4rem" }}>{character.name}</h2>{" "}
+                    </div>
+                    <DetailsP>{character.description}</DetailsP>
+                    <GridContainer>
+                      <FirstRowItem>
+                        Quadrinhos <br />{" "}
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "1rem",
+                          }}
+                        >
+                          <img
+                            width={30}
+                            src="/assets/icones/book/Group@3x.png"
+                            alt="logo quadrinhos"
+                          />
+                          {character.comics.available}
+                        </div>
+                      </FirstRowItem>
+                      <SecondRowItem>
+                        Filmes <br />{" "}
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "1rem",
+                          }}
+                        >
+                          <img
+                            width={30}
+                            src="/assets/icones/video/Shape@3x.png"
+                            alt="logo filmes"
+                          />
+                          {character.series.available}
+                        </div>
+                      </SecondRowItem>
+                    </GridContainer>
+                  </HeaderA>
+                  <HeaderB>
+                    <HeaderBImage
+                      width={500}
+                      src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                      alt="Hero Image"
                     />
-                    {character.comics.available}
-                  </div>
-                </FirstRowItem>
-                <SecondRowItem>
-                  Filmes <br />{" "}
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "1rem",
-                    }}
-                  >
-                    <img
-                      width={30}
-                      src="/assets/icones/video/Shape@3x.png"
-                      alt="logo filmes"
-                    />
-                    {character.series.available}
-                  </div>
-                </SecondRowItem>
-                
-              </GridContainer>
-            </HeaderA>
-            <HeaderB>
-              <img
-                width={500}
-                src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                alt="Hero Image"
-              />
-            </HeaderB>
-          </HeaderWrapper>
-        ))}
-      </MainWrapper>
-      <ComicList />
-    </div>
+                  </HeaderB>
+                </HeaderWrapper>
+              ))}
+            </MainWrapper>
+            <ComicList />
+          </div>
+        )}
+            </Background>
+            <Footer />
+      </div>
   );
 };
 

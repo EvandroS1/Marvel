@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Character from "./routes/Character";
 import store from "./store/index.ts";
 import { Provider } from "react-redux";
+import SearchPage from "./routes/SearchPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,11 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "searchPage/character/:id",
+    path: "searchPage",
+    element: <SearchPage />,
+  },
+  {
+    path: "SearchPage/character/:id",
     element: <Character />,
   },
   {

@@ -1,44 +1,67 @@
 import { FC, useEffect, useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { useNavigate } from 'react-router-dom';
 import {
   loadRequest,
   loadSearchRequest,
+  setInnitial,
 } from "../store/modules/characters/actions";
-import { setInputSearchValue } from "../store/modules/dados/actions";
+import { setInputSearchValue, setNoneSearchValue } from "../store/modules/dados/actions";
+import { DataState } from "../store";
 
 interface SearchBarProps {
   ishome: boolean;
+  isBarSearch: boolean;
 }
 
-export const SearchBar: FC<SearchBarProps> = ({ ishome }) => {
+export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
+  const searchValue = useSelector((state: DataState) => state.data.data);
+  const serachValueString = searchValue.toString()
+  console.log(serachValueString);
+  
+  
   const [querySearch, setQuerySearch] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null); // Crie uma ref para o input
   const isFocusedRef = useRef(false); // Ref para controlar o foco
-  const navigate = useNavigate();
   // const querySearchData: QuerySearchState = {
   //   querySearchh: querySearch,
   // };
   useEffect(() => {
     if (isFocusedRef.current && inputRef.current) {
-      dispatch(loadSearchRequest(querySearch));
-      dispatch(setInputSearchValue(querySearch));
       inputRef.current.focus(); // Restaura o foco se estiver ativo
+      dispatch(setInputSearchValue(querySearch));
+      dispatch(loadSearchRequest(querySearch));
     }
     if (querySearch === "" && ishome === true) {
       dispatch(loadRequest());
     }
-    
+    if (isBarSearch === true) {
+      dispatch(setInnitial());
+      dispatch(setNoneSearchValue())
+      
+    }
   }, [querySearch]);
+  // useEffect(() => {
+  //   // if(isBarSearch) {
+
+  //   //   dispatch(setInputSearchValue(querySearch))
+  //   //   dispatch(loadSearchRequest(querySearch));
+
+  //   // }
+  //   // }, [querySearch])
+  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuerySearch(e.target.value);
     if (ishome === false) {
-      navigate('/');
+      // navigate("/SearchPage");
     }
   };
+  // const handleInputChangeserach = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // setQuerySearch(e.target.value);
+    
+  // };
   const handleInputFocus = () => {
     isFocusedRef.current = true; // Atualiza a ref para indicar que o input está com foco
   };
@@ -61,7 +84,6 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome }) => {
     justify-content: center;
     align-items: center;
     position: relative;
-    padding-top: 2rem;
   `;
   const WrapperSun = styled.div`
     position: relative;
@@ -77,21 +99,21 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome }) => {
 
   return (
     <Wrapper>
-      <WrapperSun>
-        <Lupa
-          height={25}
-          src="/assets/busca/Lupa/Shape@2x.png"
-          alt="aaaaa"
-        ></Lupa>
-        <SearchInput
-          ref={inputRef}
-          type="text"
-          value={querySearch}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          placeholder="Procure por heróis"
-        />
-      </WrapperSun>
-    </Wrapper>
+          <WrapperSun>
+            <Lupa
+              height={25}
+              src="/assets/busca/Lupa/Shape@2x.png"
+              alt="aaaaa"
+            ></Lupa>
+            <SearchInput
+              ref={inputRef}
+              type="text"
+              value={querySearch}
+              onChange={handleInputChange}
+              onFocus={handleInputFocus}
+              placeholder="Procure por heróis"
+            />
+          </WrapperSun>
+        </Wrapper>
   );
 };

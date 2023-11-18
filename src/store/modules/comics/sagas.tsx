@@ -9,7 +9,7 @@ export function* loadComics(action: ActionType<typeof loadComicsRequest>): any {
   try {
     // console.log('k', character);
 
-    const response = yield call(baseUrl.get, `/characters/${id}/comics?${queryy}`); // Use baseUrl aqui
+    const response = yield call(baseUrl.get, `/characters/${id}/comics?limit=40&offset=0&${queryy}`); // Use baseUrl aqui
     const data = response.data.data.results;
     // console.log('comics', data);
     yield put(loadComicsSuccess(data));

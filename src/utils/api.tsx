@@ -13,7 +13,7 @@ import axios from 'axios';
   
   const query = `ts=${timeStamp}&apikey=${PUBLIC_KEY}&hash=${hash}`;
   
-  const url = `${API_BASE_URL}/characters?${query}`;
+  const url = `${API_BASE_URL}/characters?offset=0&limit=100&${query}`;
   const baseURL = `${API_BASE_URL}`;
   // const searchUrl = `/characters?nameStartsWith=${inputValue}&${query}`
   

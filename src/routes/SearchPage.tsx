@@ -6,7 +6,7 @@ import NavSearch from '../components/NavSearch';
 const SearchPage = () => {
   return (
     <div>
-      <NavSearch />
+      <NavSearch isNavSearch={true}/>
       <FilterBar />
       <CharactersList />
     </div>

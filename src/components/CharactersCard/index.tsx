@@ -54,7 +54,7 @@ const CharacterCard: React.FC<{ character: Characters }> = ({ character }) => {
   // const id = '1009149'
   const dispatch = useDispatch()
   const handleClick = () => {
-    dispatch(setInputSearchValue(character.name))
+    // dispatch(setInputSearchValue(character.name))
     // dispatch(loadComicsRequest(id));
 
     // console.log('character name', character.name);

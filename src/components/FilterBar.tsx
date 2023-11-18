@@ -63,11 +63,14 @@ export default function FilterBar() {
     justify-content: space-between;
     align-items: center;
     color: red;
-    padding-top: 6rem;
+    margin-top: 6rem;
+    padding-inline: 3rem;
+    border-radius: 3rem;
+    background-color: black;
   `;
   const WrapperA = styled.div`
     font-weight: 700;
-    color: #a1a1a1;
+    color: #ffffff;
   `;
   const WrapperB = styled.div`
     display: flex;

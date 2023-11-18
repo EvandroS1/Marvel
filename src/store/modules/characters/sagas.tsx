@@ -79,7 +79,7 @@ export function* loadOrderby(
     // console.log('',querySearch);
     
     const response = yield call(
-      baseUrl.get,`/characters?orderBy=${dot}name&${queryy}`
+      baseUrl.get,`/characters?orderBy=${dot}name&limit=50&offset=0&${queryy}`
     ); // Use baseUrl aqui
     
     const data = response.data.data;

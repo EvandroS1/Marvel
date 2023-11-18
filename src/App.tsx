@@ -8,6 +8,7 @@ import CharactersList from "./components/CharactersList";
 import store from "./store";
 import { GeistProvider } from "@geist-ui/core";
 import CssBaseline from "@geist-ui/core/esm/css-baseline";
+import Footer from "./components/Footer";
 
 const MainWrapper = styled.div`
   padding-inline: 2rem;
@@ -22,12 +23,13 @@ function App() {
         <CssBaseline />
       <MainWrapper>
         <Header />
-        <SearchBar ishome={true}/>
+        <SearchBar ishome={true} isBarSearch={false}/>
         <FilterBar />
         <Outlet />
         <CharactersList />
       </MainWrapper>
       </GeistProvider>
+      <Footer />
     </Provider>
   );
 }
