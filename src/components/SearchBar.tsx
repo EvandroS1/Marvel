@@ -4,9 +4,9 @@ import styled from "styled-components";
 import {
   loadRequest,
   loadSearchRequest,
-  setInnitial,
+  // setInnitial,
 } from "../store/modules/characters/actions";
-import { setInputSearchValue, setNoneSearchValue } from "../store/modules/dados/actions";
+import { setInputSearchValue } from "../store/modules/dados/actions";
 import { DataState } from "../store";
 
 interface SearchBarProps {
@@ -18,6 +18,7 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
   const searchValue = useSelector((state: DataState) => state.data.data);
   const serachValueString = searchValue.toString()
   console.log(serachValueString);
+  if(isBarSearch){}
   
   
   const [querySearch, setQuerySearch] = useState("");

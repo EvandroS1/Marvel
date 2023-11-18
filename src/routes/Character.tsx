@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { loadSearchByRequest } from "../store/modules/characters/actions";
 import CharactersList from "../components/CharactersList";
 import Footer from "../components/Footer";
-import { loadSearchId } from "../store/modules/characters/sagas";
 
 const Background = styled.div`
   width: 100%;
@@ -97,7 +96,7 @@ const Character = () => {
     (character) => character.id === Number(id)
   );
   const [search, setSearch] = useState<boolean>(false)
-  const [primeiraAtt, setPrimeiraAtt] = useState<boolean>(true)
+  // const [primeiraAtt, setPrimeiraAtt] = useState<boolean>(true)
   useEffect(() => {
     if(searchValue.length >= 1){
       setSearch(true)
