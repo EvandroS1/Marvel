@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { Characters } from "../../store/modules/characters/types";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setInputSearchValue } from "../../store/modules/dados/actions";
 
 
 const MainWrapper = styled.div`
@@ -52,7 +50,6 @@ const NoUnderlineLink = styled(Link)`
 
 const CharacterCard: React.FC<{ character: Characters }> = ({ character }) => {
   // const id = '1009149'
-  const dispatch = useDispatch()
   const handleClick = () => {
     // dispatch(setInputSearchValue(character.name))
     // dispatch(loadComicsRequest(id));
