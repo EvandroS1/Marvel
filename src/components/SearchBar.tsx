@@ -36,11 +36,11 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
     if (querySearch === "" && ishome === true) {
       dispatch(loadRequest());
     }
-    if (isBarSearch === true) {
-      dispatch(setInnitial());
-      dispatch(setNoneSearchValue())
+    // if (isBarSearch === true) {
+    //   dispatch(setInnitial());
+    //   dispatch(setNoneSearchValue())
       
-    }
+    // }
   }, [querySearch]);
   // useEffect(() => {
   //   // if(isBarSearch) {

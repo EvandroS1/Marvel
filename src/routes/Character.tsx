@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { loadSearchByRequest } from "../store/modules/characters/actions";
 import CharactersList from "../components/CharactersList";
 import Footer from "../components/Footer";
+import { loadSearchId } from "../store/modules/characters/sagas";
 
 const Background = styled.div`
   width: 100%;
@@ -75,8 +76,8 @@ const Character = () => {
     (state: ApplicationState) => state.characters.data
   );
   
-  const serachValue = useSelector((state: DataState) => state.data.data);
-  console.log("serachvalue", serachValue);
+  const searchValue = useSelector((state: DataState) => state.data.data);
+  console.log("searchValue", searchValue.length);
   console.log("heroes", characters);
 
   const { id } = useParams();
@@ -98,12 +99,19 @@ const Character = () => {
   const [search, setSearch] = useState<boolean>(false)
   const [primeiraAtt, setPrimeiraAtt] = useState<boolean>(true)
   useEffect(() => {
-    if(!primeiraAtt){
+    if(searchValue.length >= 1){
       setSearch(true)
-    }else{
-      setPrimeiraAtt(false)
+    } else {
+      if(searchValue.length = 0 && id){
+        dispatch(loadSearchByRequest(id))
+        setSearch(false)
+      }
+      if(character){
+      }
     }
-  }, [characters.values])
+      // setPrimeiraAtt(true)
+      // setSearch(false)
+  }, [characters.length])
   // if (characters.length > 2) {
   //   search = true;
   // }
