@@ -22,6 +22,8 @@ const reducer: Reducer<ComicsState> = (state = INITIAL_STATE, action) => {
 
     case ActionComicsTypes.LOAD_REQUEST_CHARACTER_COMICS_FAILURE:
       return { ...state, loading: false, error: true, data: [] };
+    case ActionComicsTypes.SET_NONE_COMIC:
+      return { ...state, loading: false, error: false, data: [] };
     default:
       return state;
   }

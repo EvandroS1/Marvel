@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { ApplicationState } from "../../store";
-import { loadRequest } from "../../store/modules/characters/actions";
 import CharacterCard from "../CharactersCard";
 import styled from "styled-components";
 import Loading from "../Loading";
@@ -17,7 +16,7 @@ const MainWrapper = styled.div`
 
 const CharactersList: React.FC = () => {
   const characters = useSelector((state: ApplicationState) => state.characters.data);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // console.log(characters);
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,9 +30,9 @@ const CharactersList: React.FC = () => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    dispatch(loadRequest());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(loadRequest());
+  // }, [dispatch]);
 
   useEffect(() => {
     if(characters.length > 0) {

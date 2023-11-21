@@ -4,6 +4,8 @@ import { Comics } from "./types";
 
 export const loadComicsRequest = (id: string) => action(ActionComicsTypes.LOAD_REQUEST_CHARACTER_COMICS, id);
 
+export const setNoneComic = () => action(ActionComicsTypes.SET_NONE_COMIC);
+
 export const loadComicsSuccess: any = (data: Comics[]) => action(ActionComicsTypes.LOAD_REQUEST_CHARACTER_COMICS_SUCCESS, { data })
   // console.log('succes',data);
 

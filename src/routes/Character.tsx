@@ -3,17 +3,18 @@ import { useParams } from "react-router-dom";
 import { ApplicationState, DataState } from "../store";
 import NavSearch from "../components/NavSearch";
 import styled from "styled-components";
-import { loadComicsRequest } from "../store/modules/comics/actions";
+import { loadComicsRequest, setNoneComic } from "../store/modules/comics/actions";
 import ComicList from "../components/ComicList";
 import { useEffect, useState } from "react";
 import { loadSearchByRequest } from "../store/modules/characters/actions";
 import CharactersList from "../components/CharactersList";
 import Footer from "../components/Footer";
+import { setNoneSearchValue } from "../store/modules/dados/actions";
 
 const Background = styled.div`
   width: 100%;
   height: 100%;
-  background-image: url("/public/assets/backCharacter.jpg");
+  background-image: url("/assets/backCharacter.jpg");
   background-repeat: repeat; /* Esta linha faz a imagem se repetir para cobrir completamente o contêiner */
 `;
 
@@ -76,8 +77,9 @@ const Character = () => {
   );
   
   const searchValue = useSelector((state: DataState) => state.data.data);
-  console.log("searchValue", searchValue.length);
-  console.log("heroes", characters);
+  let searchV = searchValue
+  // console.log("searchValue", searchValue.length, searchValue);
+  // console.log("heroes", characters);
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -101,9 +103,10 @@ const Character = () => {
     if(searchValue.length >= 1){
       setSearch(true)
     } else {
-      if(searchValue.length = 0 && id){
+      if(searchV.length < 1 && id){
         dispatch(loadSearchByRequest(id))
         setSearch(false)
+        // dispatch(setInnitial())
       }
       if(character){
       }
@@ -111,6 +114,14 @@ const Character = () => {
       // setPrimeiraAtt(true)
       // setSearch(false)
   }, [characters.length])
+  useEffect(() => {
+        if(id){
+          dispatch(loadSearchByRequest(id))
+          dispatch(setNoneSearchValue())
+          dispatch(setNoneComic())
+          setSearch(false)
+        }
+  }, [id])
   // if (characters.length > 2) {
   //   search = true;
   // }

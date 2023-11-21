@@ -59,7 +59,7 @@ const CharacterCard: React.FC<{ character: Characters }> = ({ character }) => {
     
   }
   return (
-    <NoUnderlineLink onClick={() => handleClick()} to={`character/${character.id}`}>
+    <NoUnderlineLink onClick={() => handleClick()} to={`/character/${character.id}`}>
       <MainWrapper>
         <Image>
           <img

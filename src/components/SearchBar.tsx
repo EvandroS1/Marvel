@@ -1,5 +1,5 @@
 import { FC, useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import {
   loadRequest,
@@ -7,7 +7,7 @@ import {
   // setInnitial,
 } from "../store/modules/characters/actions";
 import { setInputSearchValue } from "../store/modules/dados/actions";
-import { DataState } from "../store";
+// import { DataState } from "../store";
 
 interface SearchBarProps {
   ishome: boolean;
@@ -15,9 +15,9 @@ interface SearchBarProps {
 }
 
 export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
-  const searchValue = useSelector((state: DataState) => state.data.data);
-  const serachValueString = searchValue.toString()
-  console.log(serachValueString);
+  // const searchValue = useSelector((state: DataState) => state.data.data);
+  // const serachValueString = searchValue.toString()
+  // console.log(serachValueString);
   if(isBarSearch){}
   
   
@@ -28,6 +28,7 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
   // const querySearchData: QuerySearchState = {
   //   querySearchh: querySearch,
   // };
+  
   useEffect(() => {
     if (isFocusedRef.current && inputRef.current) {
       inputRef.current.focus(); // Restaura o foco se estiver ativo
@@ -36,6 +37,7 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
     }
     if (querySearch === "" && ishome === true) {
       dispatch(loadRequest());
+      
     }
     // if (isBarSearch === true) {
     //   dispatch(setInnitial());
