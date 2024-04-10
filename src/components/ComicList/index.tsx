@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { ComicGlobalState } from "../../store";
 import styled from "styled-components";
 import Loading from "../Loading";
 import Pagination from "../Pagination";
 import ComicCard from "../ComicCard";
-
+import Empty from "../Empty";
 
 const MainWrapper = styled.div`
   display: grid;
@@ -16,13 +16,13 @@ const MainWrapper = styled.div`
 
 const ComicList: React.FC = () => {
   const comic = useSelector((state: ComicGlobalState) => state.comics.data);
+  const loadig = useSelector((state: ComicGlobalState) => state.comics.loading);
   // console.log('list',comic);
-  
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   // console.log(characters);
   const [currentPage, setCurrentPage] = useState(1);
   const heroesPerPage = 8;
-  
+
   const indexOfLastHero = currentPage * heroesPerPage;
   const indexOfFirstHero = indexOfLastHero - heroesPerPage;
   const currentComics = comic.slice(indexOfFirstHero, indexOfLastHero);
@@ -31,29 +31,28 @@ const ComicList: React.FC = () => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    if(comic.length > 0) {
-      setIsLoading(false);
-    } else {
-      setIsLoading(true);
-    }
-  }, [comic]);
-
-  return ( 
+  return (
     <div>
-      {isLoading ? (
+      {loadig ? (
         <Loading />
       ) : (
-        <MainWrapper>
-          {currentComics.map((comic) => (
-            <ComicCard key={comic.id} comic={comic}/>
-          ))}
-          <Pagination
-            heroesPerPage={heroesPerPage}
-            totalHeroes={comic.length}
-            paginate={paginate}
-          />
-        </MainWrapper>
+        <div>
+          {currentComics.length === 0 ? (
+            <Empty />
+          ) : (
+            <MainWrapper>
+              {currentComics.map((comic) => (
+                <ComicCard key={comic.id} comic={comic} />
+              ))}
+              <Pagination
+                heroesPerPage={heroesPerPage}
+                totalHeroes={comic.length}
+                paginate={paginate}
+                currentPage={currentPage}
+              />
+            </MainWrapper>
+          )}
+        </div>
       )}
     </div>
   );

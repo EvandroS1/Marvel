@@ -5,7 +5,7 @@ import CharacterCard from "../CharactersCard";
 import styled from "styled-components";
 import Loading from "../Loading";
 import Pagination from "../Pagination";
-
+import Empty from "../Empty";
 
 const MainWrapper = styled.div`
   display: grid;
@@ -16,12 +16,11 @@ const MainWrapper = styled.div`
 
 const CharactersList: React.FC = () => {
   const characters = useSelector((state: ApplicationState) => state.characters.data);
-  // const dispatch = useDispatch();
+  const loading = useSelector((state: ApplicationState) => state.characters.loading);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // console.log(characters);
   const [currentPage, setCurrentPage] = useState(1);
   const heroesPerPage = 8;
-  
+
   const indexOfLastHero = currentPage * heroesPerPage;
   const indexOfFirstHero = indexOfLastHero - heroesPerPage;
   const currentHeroes = characters.slice(indexOfFirstHero, indexOfLastHero);
@@ -30,12 +29,8 @@ const CharactersList: React.FC = () => {
     setCurrentPage(pageNumber);
   };
 
-  // useEffect(() => {
-  //   dispatch(loadRequest());
-  // }, [dispatch]);
-
   useEffect(() => {
-    if(characters.length > 0) {
+    if (characters.length > 0) {
       setIsLoading(false);
     } else {
       setIsLoading(true);
@@ -44,20 +39,29 @@ const CharactersList: React.FC = () => {
 
   return (
     <div>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <MainWrapper>
-          {currentHeroes.map((character) => (
-            <CharacterCard key={character.id} character={character} />
-          ))}
-          <Pagination
-            heroesPerPage={heroesPerPage}
-            totalHeroes={characters.length}
-            paginate={paginate}
-          />
-        </MainWrapper>
+      {characters.length === 0 ? (
+        <Empty />
+      ) : 
+      (
+        <div>
+          {loading ? (
+            <Loading />
+          ) : (
+            <MainWrapper>
+              {currentHeroes.map((character) => (
+                <CharacterCard key={character.id} character={character} />
+              ))}
+              <Pagination
+                heroesPerPage={heroesPerPage}
+                totalHeroes={characters.length}
+                paginate={paginate}
+                currentPage={currentPage} // Adicione esta linha
+              />
+            </MainWrapper>
+          )}
+        </div>
       )}
+      
     </div>
   );
 };

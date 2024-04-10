@@ -15,7 +15,7 @@ const reducer: Reducer<ComicsState> = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        error: true,
+        error: false,
         data: action.payload.data,
         
       };

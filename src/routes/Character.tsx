@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 import { ApplicationState, DataState } from "../store";
 import NavSearch from "../components/NavSearch";
 import styled from "styled-components";
-import { loadComicsRequest, setNoneComic } from "../store/modules/comics/actions";
+import {
+  loadComicsRequest,
+  setNoneComic,
+} from "../store/modules/comics/actions";
 import ComicList from "../components/ComicList";
 import { useEffect, useState } from "react";
 import { loadSearchByRequest } from "../store/modules/characters/actions";
@@ -18,16 +21,14 @@ const Background = styled.div`
   background-repeat: repeat; /* Esta linha faz a imagem se repetir para cobrir completamente o contêiner */
 `;
 
-
-
 const MainWrapper = styled.div`
-width: 80%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   padding-inline: 8rem;
-  `;
+`;
 const HeaderWrapper = styled.div`
-background-color: white;
+  background-color: white;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -38,20 +39,25 @@ background-color: white;
   /* width: 100%; */
 `;
 const HeaderA = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   width: 80%;
   justify-content: center;
   align-items: center;
 `;
 const HeaderB = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;`;
+  align-items: center;
+  height: 100%;
+`;
 const DetailsP = styled.p``;
 const HeaderBImage = styled.img`
-border-radius: 3rem;`;
+  border-radius: 3rem;
+  max-height: 80rem;
+  max-width: 25rem;
+`;
 // ------------------------GRID------------------------
 const GridContainer = styled.div`
   display: grid;
@@ -59,7 +65,7 @@ const GridContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto auto;
   gap: 10px; /* Espaçamento entre as células do grid */
-`;
+`; 
 
 const GridItem = styled.div`
   padding: 0px 10px 10px 0;
@@ -75,9 +81,9 @@ const Character = () => {
   const characters = useSelector(
     (state: ApplicationState) => state.characters.data
   );
-  
+
   const searchValue = useSelector((state: DataState) => state.data.data);
-  let searchV = searchValue
+  let searchV = searchValue;
   // console.log("searchValue", searchValue.length, searchValue);
   // console.log("heroes", characters);
 
@@ -97,31 +103,36 @@ const Character = () => {
   const character = characters.filter(
     (character) => character.id === Number(id)
   );
-  const [search, setSearch] = useState<boolean>(false)
+  const [search, setSearch] = useState<boolean>(false);
   // const [primeiraAtt, setPrimeiraAtt] = useState<boolean>(true)
   useEffect(() => {
-    if(searchValue.length >= 1){
-      setSearch(true)
+    if (searchValue.length >= 1) {
+      setSearch(true);
     } else {
-      if(searchV.length < 1 && id){
-        dispatch(loadSearchByRequest(id))
-        setSearch(false)
+      if (searchV.length < 1 && id) {
+        dispatch(loadSearchByRequest(id));
+        setSearch(false);
+
         // dispatch(setInnitial())
       }
-      if(character){
+      if (character) {
       }
     }
-      // setPrimeiraAtt(true)
-      // setSearch(false)
-  }, [characters.length])
+    // setPrimeiraAtt(true)
+    // setSearch(false)
+  }, [characters.length]);
   useEffect(() => {
-        if(id){
-          dispatch(loadSearchByRequest(id))
-          dispatch(setNoneSearchValue())
-          dispatch(setNoneComic())
-          setSearch(false)
-        }
-  }, [id])
+    if (id) {
+      dispatch(loadSearchByRequest(id));
+      dispatch(setNoneSearchValue());
+      dispatch(setNoneComic());
+      setSearch(false);
+    }
+  }, [id]);
+  useEffect(() => {
+    if (search === false) {
+    }
+  }, [loadSearchByRequest]);
   // if (characters.length > 2) {
   //   search = true;
   // }
@@ -131,9 +142,9 @@ const Character = () => {
   // console.log('kl',character);
 
   return (
-      <div>
-        <NavSearch isNavSearch={false} />
-            <Background>
+    <div>
+      <NavSearch isNavSearch={false} />
+      <Background>
         {search ? (
           <CharactersList />
         ) : (
@@ -191,7 +202,7 @@ const Character = () => {
                   </HeaderA>
                   <HeaderB>
                     <HeaderBImage
-                      width={500}
+                      // width={500}
                       src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                       alt="Hero Image"
                     />
@@ -202,9 +213,9 @@ const Character = () => {
             <ComicList />
           </div>
         )}
-            </Background>
-            <Footer />
-      </div>
+      </Background>
+      <Footer />
+    </div>
   );
 };
 

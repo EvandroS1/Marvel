@@ -1,12 +1,14 @@
 import { FC, useEffect, useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
   loadRequest,
+  loadSearchByRequest,
   loadSearchRequest,
   // setInnitial,
 } from "../store/modules/characters/actions";
 import { setInputSearchValue } from "../store/modules/dados/actions";
+import { DataState } from "../store";
 // import { DataState } from "../store";
 
 interface SearchBarProps {
@@ -15,8 +17,8 @@ interface SearchBarProps {
 }
 
 export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
-  // const searchValue = useSelector((state: DataState) => state.data.data);
-  // const serachValueString = searchValue.toString()
+  const searchValue = useSelector((state: DataState) => state.data.data);
+  const serachValueString = searchValue.toString()
   // console.log(serachValueString);
   if(isBarSearch){}
   
@@ -45,26 +47,25 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
       
     // }
   }, [querySearch]);
-  // useEffect(() => {
-  //   // if(isBarSearch) {
+  useEffect(() => {
+    setQuerySearch("")
+    
 
-  //   //   dispatch(setInputSearchValue(querySearch))
-  //   //   dispatch(loadSearchRequest(querySearch));
-
-  //   // }
-  //   // }, [querySearch])
+    }, [loadSearchByRequest])
   
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuerySearch(e.target.value);
+    if(inputRef.current) {
+      inputRef.current.focus();
+    }
+    if(isFocusedRef.current && inputRef.current) {
+      inputRef.current.focus();
+    }
     if (ishome === false) {
       // navigate("/SearchPage");
     }
   };
-  // const handleInputChangeserach = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setQuerySearch(e.target.value);
-    
-  // };
   const handleInputFocus = () => {
     isFocusedRef.current = true; // Atualiza a ref para indicar que o input está com foco
   };
@@ -111,7 +112,7 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
             <SearchInput
               ref={inputRef}
               type="text"
-              value={querySearch}
+              value={searchValue.length >= 1 ? querySearch: serachValueString}
               onChange={handleInputChange}
               onFocus={handleInputFocus}
               placeholder="Procure por heróis"
