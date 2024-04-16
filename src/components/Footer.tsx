@@ -10,10 +10,13 @@ const MainWrapper = styled.div`
   height: 14rem;
 `;
 const MarvelLogo = styled.div`
-  /* width: 6rem; */
+  width: 6rem;
   `;
   const Ul = styled.ul`
   display: flex;
+  @media (max-width: 767px) {
+    display: none;
+  }
   gap: 5rem;
 list-style-type: none;
 color: white; `;

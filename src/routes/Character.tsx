@@ -202,7 +202,7 @@ const Character = () => {
                   </HeaderA>
                   <HeaderB>
                     <HeaderBImage
-                      // width={500}
+                      width={500}
                       src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                       alt="Hero Image"
                     />

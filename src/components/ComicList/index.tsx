@@ -8,9 +8,21 @@ import ComicCard from "../ComicCard";
 import Empty from "../Empty";
 
 const MainWrapper = styled.div`
-  display: none;
+  display: grid;
   place-items: center;
   margin-top: 14rem;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 8rem;
+  }
+
+  @media (max-width: 599px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 
  
 `;

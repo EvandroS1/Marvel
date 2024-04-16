@@ -8,10 +8,25 @@ import Pagination from "../Pagination";
 import Empty from "../Empty";
 
 const MainWrapper = styled.div`
-  display: grid;
+  display: flex;
   place-items: center;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-content: center;
+  align-items: center;
   margin-top: 2rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+   /* @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 8rem;
+  }
+
+  @media (max-width: 599px) {
+    grid-template-columns: 1fr;
+  } */
 `;
 
 const CharactersList: React.FC = () => {
