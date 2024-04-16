@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../store";
 import CharacterCard from "../CharactersCard";
@@ -17,7 +17,6 @@ const MainWrapper = styled.div`
 const CharactersList: React.FC = () => {
   const characters = useSelector((state: ApplicationState) => state.characters.data);
   const loading = useSelector((state: ApplicationState) => state.characters.loading);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState(1);
   const heroesPerPage = 8;
 
@@ -29,13 +28,6 @@ const CharactersList: React.FC = () => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    if (characters.length > 0) {
-      setIsLoading(false);
-    } else {
-      setIsLoading(true);
-    }
-  }, [characters]);
 
   return (
     <div>
