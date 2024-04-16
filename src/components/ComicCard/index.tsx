@@ -4,7 +4,7 @@ import { Comics } from "../../store/modules/comics/types";
 
 
 const MainWrapper = styled.div`
-  display: none;
+  display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
   border-radius: 2rem 2rem 0 0 ;

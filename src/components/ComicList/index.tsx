@@ -8,10 +8,11 @@ import ComicCard from "../ComicCard";
 import Empty from "../Empty";
 
 const MainWrapper = styled.div`
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 14rem;
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
@@ -24,7 +25,7 @@ const MainWrapper = styled.div`
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 
- 
+  */
 `;
 
 const ComicList: React.FC = () => {

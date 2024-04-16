@@ -17,26 +17,32 @@ import { setNoneSearchValue } from "../store/modules/dados/actions";
 const Background = styled.div`
   width: 100%;
   height: 100%;
+
+  align-items: center;
   background-image: url("/assets/backCharacter.jpg");
   background-repeat: repeat; /* Esta linha faz a imagem se repetir para cobrir completamente o contêiner */
 `;
 
-const MainWrapper = styled.div`
+const CharacterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+const CharacterInfo = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
-  padding-inline: 8rem;
 `;
 const HeaderWrapper = styled.div`
   background-color: white;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 50% 50%;
   margin-top: 8rem;
   border-radius: 3rem;
-  height: 40rem;
-  /* width: 100%; */
+  height: 100%;
 `;
 const HeaderA = styled.div`
   display: flex;
@@ -50,13 +56,16 @@ const HeaderB = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
 `;
+
 const DetailsP = styled.p``;
 const HeaderBImage = styled.img`
   border-radius: 3rem;
   max-height: 80rem;
   max-width: 25rem;
+  min-width: 10rem;
+  width: 90%;
+  margin-bottom: 3rem;
 `;
 // ------------------------GRID------------------------
 const GridContainer = styled.div`
@@ -65,7 +74,7 @@ const GridContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto auto;
   gap: 10px; /* Espaçamento entre as células do grid */
-`; 
+`;
 
 const GridItem = styled.div`
   padding: 0px 10px 10px 0;
@@ -149,67 +158,68 @@ const Character = () => {
           <CharactersList />
         ) : (
           <div>
-            <MainWrapper>
-              {character.map((character) => (
-                <HeaderWrapper key={character.id}>
-                  <HeaderA>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <h2 style={{ fontSize: "2.4rem" }}>{character.name}</h2>{" "}
-                    </div>
-                    <DetailsP>{character.description}</DetailsP>
-                    <GridContainer>
-                      <FirstRowItem>
-                        Quadrinhos <br />{" "}
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "1rem",
-                          }}
-                        >
-                          <img
-                            width={30}
-                            src="/assets/icones/book/Group@3x.png"
-                            alt="logo quadrinhos"
-                          />
-                          {character.comics.available}
-                        </div>
-                      </FirstRowItem>
-                      <SecondRowItem>
-                        Filmes <br />{" "}
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "1rem",
-                          }}
-                        >
-                          <img
-                            width={30}
-                            src="/assets/icones/video/Shape@3x.png"
-                            alt="logo filmes"
-                          />
-                          {character.series.available}
-                        </div>
-                      </SecondRowItem>
-                    </GridContainer>
-                  </HeaderA>
-                  <HeaderB>
-                    <HeaderBImage
-                      width={500}
-                      src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                      alt="Hero Image"
-                    />
-                  </HeaderB>
-                </HeaderWrapper>
-              ))}
-            </MainWrapper>
+            <CharacterWrapper>
+              <CharacterInfo>
+                {character.map((character) => (
+                  <HeaderWrapper key={character.id}>
+                    <HeaderA>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <h2 style={{ fontSize: "2.4rem" }}>{character.name}</h2>{" "}
+                      </div>
+                      <DetailsP>{character.description}</DetailsP>
+                      <GridContainer>
+                        <FirstRowItem>
+                          Quadrinhos <br />{" "}
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "1rem",
+                            }}
+                          >
+                            <img
+                              width={30}
+                              src="/assets/icones/book/Group@3x.png"
+                              alt="logo quadrinhos"
+                            />
+                            {character.comics.available}
+                          </div>
+                        </FirstRowItem>
+                        <SecondRowItem>
+                          Filmes <br />{" "}
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "1rem",
+                            }}
+                          >
+                            <img
+                              width={30}
+                              src="/assets/icones/video/Shape@3x.png"
+                              alt="logo filmes"
+                            />
+                            {character.series.available}
+                          </div>
+                        </SecondRowItem>
+                      </GridContainer>
+                    </HeaderA>
+                    <HeaderB>
+                      <HeaderBImage
+                        src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                        alt="Hero Image"
+                      />
+                    </HeaderB>
+                  </HeaderWrapper>
+                ))}
+              </CharacterInfo>
+            </CharacterWrapper>
             <ComicList />
           </div>
         )}

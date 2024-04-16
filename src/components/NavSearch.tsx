@@ -9,6 +9,9 @@ const Nav = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 interface NavBarProps {

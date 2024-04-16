@@ -26,7 +26,7 @@ export default function FilterBar() {
   }, [querySearchValue]);
 
   const handleClick = () => {
-    toggleImage()
+    toggleImage();
     if (query.length === 0) {
       if (orderby === true) {
         dispatch(loadOrderbyRequest(orderby));
@@ -67,6 +67,12 @@ export default function FilterBar() {
     padding-inline: 3rem;
     border-radius: 3rem;
     background-color: black;
+    @media (max-width: 800px) {
+      font-size: 12px;
+      padding-inline: 1rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
   `;
   const WrapperA = styled.div`
     font-weight: 700;
@@ -74,14 +80,20 @@ export default function FilterBar() {
   `;
   const WrapperB = styled.div`
     display: flex;
+    gap: 20px;
     align-items: center;
     justify-content: space-around;
     transform: scale();
+    @media (max-width:800px) {
+      margin-bottom: 12px;
+    }
     /* width: 19rem; */
   `;
   const FirstWrapperB = styled.div`
     /* width: 13rem; */
     display: flex;
+    gap: 5px;
+    align-items: center;
     justify-content: space-around;
   `;
   const FirstWrapperBA = styled.a`
@@ -94,6 +106,7 @@ export default function FilterBar() {
   `;
   const ToggleImg = styled.img`
     cursor: pointer;
+    height: 100%;
   `;
   const [isFirstImageVisible, setFirstImageVisible] = useState(true);
 
@@ -118,15 +131,12 @@ export default function FilterBar() {
             src="/assets/icones/heroi/noun_Superhero_2227044@3x.png"
             alt="simbolo de heroi"
           />
-          <FirstWrapperBA
-            style={{ color: "red", textDecoration: "none" }}
-          >
+          <FirstWrapperBA style={{ color: "red", textDecoration: "none" }}>
             Ordenar por nome - A/Z
           </FirstWrapperBA>
         </FirstWrapperB>
         <SecondWrapperB>
           <ToggleImg
-            height={30}
             src={isFirstImageVisible ? firstImageUrl : secondImageUrl}
             alt="simbolo de heroi"
             onClick={handleClick}
