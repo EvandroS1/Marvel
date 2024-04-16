@@ -11,6 +11,7 @@ const Nav = styled.div`
   justify-content: space-between;
   @media (max-width: 800px) {
     flex-direction: column;
+    align-items: center;
   }
 `;
 
