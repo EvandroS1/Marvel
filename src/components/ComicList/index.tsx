@@ -8,18 +8,16 @@ import ComicCard from "../ComicCard";
 import Empty from "../Empty";
 
 const MainWrapper = styled.div`
-  display: grid;
+  display: none;
   place-items: center;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 14rem;
+
+ 
 `;
 
 const ComicList: React.FC = () => {
   const comic = useSelector((state: ComicGlobalState) => state.comics.data);
   const loadig = useSelector((state: ComicGlobalState) => state.comics.loading);
-  // console.log('list',comic);
-
-  // console.log(characters);
   const [currentPage, setCurrentPage] = useState(1);
   const heroesPerPage = 8;
 

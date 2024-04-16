@@ -10,7 +10,7 @@ const MainWrapper = styled.div`
   height: 14rem;
 `;
 const MarvelLogo = styled.div`
-  width: 6rem;
+  /* width: 6rem; */
   `;
   const Ul = styled.ul`
   display: flex;

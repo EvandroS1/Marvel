@@ -77,10 +77,10 @@ export default function FilterBar() {
     align-items: center;
     justify-content: space-around;
     transform: scale();
-    width: 19rem;
+    /* width: 19rem; */
   `;
   const FirstWrapperB = styled.div`
-    width: 13rem;
+    /* width: 13rem; */
     display: flex;
     justify-content: space-around;
   `;

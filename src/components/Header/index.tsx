@@ -1,6 +1,10 @@
 import styled from "styled-components";
 const DivHeader = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 const H1Header = styled.h1`
 `;
