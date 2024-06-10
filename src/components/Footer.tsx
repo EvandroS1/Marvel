@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled, { ThemeProvider } from "styled-components";
-import { QuerySearchState } from "../store/modules/dados/types";
+import { DataState } from "../store";
 
 const MarvelLogo = styled.div`
   width: 6rem;
@@ -31,34 +31,35 @@ const MainWrapper = styled.div`
 
 export default function Footer() {
   const savedTheme = localStorage.getItem("theme") || "";
-  const globalTheme: string = useSelector(
-    (state: QuerySearchState) => state.data.data
-  );
+  const globalTheme = useSelector((state: DataState) => state.data.data);
   const [theme, setTheme] = useState("");
+  const [globalThemeState, setglobalThemeState] = useState("");
+  if(globalTheme) {
+    setglobalThemeState
+  }
   useEffect(() => {
-    if (globalTheme.length === 0) {
+    if (globalThemeState.length === 0) {
       setTheme(savedTheme);
     }
-    console.log('theme1', theme)
+    console.log("theme1", theme);
   }, []);
   useEffect(() => {
-    if (globalTheme.length > 1) {
-      setTheme(globalTheme);
+    if (globalThemeState.length > 1) {
+      setTheme(globalThemeState);
     }
-    console.log('theme2', theme)
-    console.log("footer", globalTheme.length);
+    console.log("theme2", theme);
+    console.log("footer", globalThemeState.length);
     console.log("footer, savedTheme", theme);
-  }, [globalTheme]);
+  }, [globalThemeState]);
   useEffect(() => {
-    console.log('theme3', theme)
-  }
-  ,[theme])
+    console.log("theme3", theme);
+  }, [theme]);
 
   return (
     <ThemeProvider
       theme={{
-        color: globalTheme === "dark" ? "white" : "black",
-        backgroundColor: globalTheme === "dark" ? "black" : "white",
+        color: globalThemeState === "dark" ? "white" : "black",
+        backgroundColor: globalThemeState === "dark" ? "black" : "white",
       }}
     >
       <MainWrapper>

@@ -181,7 +181,7 @@ const Character = () => {
       >
         <ThemeWrapper>
           <IconButton onClick={handleToggleTheme} color="inherit">
-            {theme === "dark" ? <Brightness4Icon /> : <Brightness7Icon />}
+            {savedTheme === "dark" ? <Brightness4Icon /> : <Brightness7Icon />}
           </IconButton>
         </ThemeWrapper>
         <NavSearch />

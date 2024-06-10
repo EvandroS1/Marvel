@@ -1,4 +1,4 @@
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import styled, { ThemeProvider } from "styled-components";
 import { Outlet } from "react-router-dom";
 import { SearchBar } from "./components/SearchBar";
@@ -10,7 +10,6 @@ import { GeistProvider } from "@geist-ui/core";
 import CssBaseline from "@geist-ui/core/esm/css-baseline";
 import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
-import { QuerySearchState } from "./store/modules/dados/types";
 import { setThemee } from "./store/modules/dados/actions";
 import { loadRequest } from "./store/modules/characters/actions";
 import { IconButton } from "@mui/material";

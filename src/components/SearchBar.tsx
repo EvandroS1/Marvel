@@ -1,5 +1,4 @@
-import { FC, useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { loadSearchRequest } from "../store/modules/characters/actions";
 import { useForm } from "react-hook-form";
@@ -9,8 +8,7 @@ export const SearchBar = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    formState: {},
   } = useForm();
   const dispatch = useDispatch();
 

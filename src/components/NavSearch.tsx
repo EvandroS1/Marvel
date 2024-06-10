@@ -3,7 +3,6 @@ import { SearchBar } from "./SearchBar";
 import { Link } from "react-router-dom";
 import { setNone } from "../store/modules/characters/sagas";
 import { useDispatch } from "react-redux";
-import { FC } from "react";
 
 const Nav = styled.div`
   display: flex;
@@ -16,10 +15,6 @@ const Nav = styled.div`
     align-items: center;
   }
 `;
-
-interface NavBarProps {
-  isNavSearch: boolean;
-}
 
 const NavSearch= () => {
   const dispatch = useDispatch();
