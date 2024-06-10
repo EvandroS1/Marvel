@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { ApplicationState, DataState } from "../store";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -7,17 +7,22 @@ import {
   loadOrderbyRequest,
   loadSearchOrderbyRequest,
 } from "../store/modules/characters/actions";
+import { QuerySearchState } from "../store/modules/dados/types";
 
 export default function FilterBar() {
   const characters = useSelector(
     (state: ApplicationState) => state.characters.data
   );
   const querySearchValue = useSelector((state: DataState) => state.data.data);
+  const globalTheme = useSelector((state: QuerySearchState) => state.data.data);
+
   const [query, setQuery] = useState("");
   // const query = querySearchValue.toString()
   // console.log('query', query);
 
   const [orderby, setOrderby] = useState(false);
+  const savedTheme = localStorage.getItem("theme") || '';
+
   const heroes = characters.length;
   // const queryValue =  querySearchValue
   const dispatch = useDispatch();
@@ -66,7 +71,7 @@ export default function FilterBar() {
     margin-top: 6rem;
     padding-inline: 3rem;
     border-radius: 3rem;
-    background-color: black;
+    background-color: ${({ theme }) => theme.backgroundColor};
     @media (max-width: 800px) {
       font-size: 12px;
       padding-inline: 1rem;
@@ -76,7 +81,7 @@ export default function FilterBar() {
   `;
   const WrapperA = styled.div`
     font-weight: 700;
-    color: #ffffff;
+    color: ${({ theme }) => theme.color};
   `;
   const WrapperB = styled.div`
     display: flex;
@@ -120,6 +125,7 @@ export default function FilterBar() {
   const secondImageUrl = "/assets/toggle/Group 2@3x.png";
 
   return (
+    <ThemeProvider theme={{ color: globalTheme === "dark" ? "white" : "black", backgroundColor: globalTheme === "dark" ? "black" : "white" }}>
     <MainWrapper>
       <WrapperA>
         <p>Encontrados {heroes} heróis</p>
@@ -144,5 +150,7 @@ export default function FilterBar() {
         </SecondWrapperB>
       </WrapperB>
     </MainWrapper>
+    </ThemeProvider>
+
   );
 }

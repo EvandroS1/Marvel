@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { ApplicationState, DataState } from "../store";
 import NavSearch from "../components/NavSearch";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import {
   loadComicsRequest,
   setNoneComic,
@@ -13,6 +13,7 @@ import { loadSearchByRequest } from "../store/modules/characters/actions";
 import CharactersList from "../components/CharactersList";
 import Footer from "../components/Footer";
 import { setNoneSearchValue } from "../store/modules/dados/actions";
+import { QuerySearchState } from "../store/modules/dados/types";
 
 const Background = styled.div`
   width: 100%;
@@ -35,7 +36,8 @@ const CharacterInfo = styled.div`
   flex-direction: column;
 `;
 const HeaderWrapper = styled.div`
-  background-color: white;
+  background-color: ${({ theme }) => theme.backgroundColor};
+  color: ${({ theme }) => theme.color};
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -93,6 +95,8 @@ const Character = () => {
 
   const searchValue = useSelector((state: DataState) => state.data.data);
   let searchV = searchValue;
+
+  const savedTheme = localStorage.getItem("theme") || '';
   // console.log("searchValue", searchValue.length, searchValue);
   // console.log("heroes", characters);
 
@@ -105,7 +109,7 @@ const Character = () => {
   useEffect(() => {
     if (id) {
       dispatch(loadSearchByRequest(id));
-      console.log("foi");
+      // console.log("foi");
     }
   }, []);
 
@@ -152,7 +156,10 @@ const Character = () => {
 
   return (
     <div>
-      <NavSearch isNavSearch={false} />
+    <ThemeProvider theme={{ color: savedTheme === "dark" ? "white" : "black", backgroundColor: savedTheme === "dark" ? "black" : "white" }}>
+
+
+      <NavSearch />
       <Background>
         {search ? (
           <CharactersList />
@@ -225,6 +232,8 @@ const Character = () => {
         )}
       </Background>
       <Footer />
+    </ThemeProvider>
+
     </div>
   );
 };

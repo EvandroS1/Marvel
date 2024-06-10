@@ -31,7 +31,7 @@ export default function loading() {
   return (
     <MainWrapper>
         <WrapperImage>
-        <LoadingImg src="/assets/loading/loading4.gif" alt="" />
+        <LoadingImg width={500} src="/assets/loading/loading4.gif" alt="" />
     </WrapperImage>
       </MainWrapper>
     )

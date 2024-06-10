@@ -1,6 +1,8 @@
 export interface QuerySearch {
-  querySearchh: string
-
+  querySearchh: string;
+}
+export interface Theme {
+  theme: string;
 }
 
 export interface QuerySearchState  {

@@ -1,76 +1,25 @@
 import { FC, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import {
-  loadRequest,
-  loadSearchByRequest,
-  loadSearchRequest,
-  // setInnitial,
-} from "../store/modules/characters/actions";
+import { loadSearchRequest } from "../store/modules/characters/actions";
+import { useForm } from "react-hook-form";
 import { setInputSearchValue } from "../store/modules/dados/actions";
-import { DataState } from "../store";
-// import { DataState } from "../store";
 
-interface SearchBarProps {
-  ishome: boolean;
-  isBarSearch: boolean;
-}
-
-export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
-  const searchValue = useSelector((state: DataState) => state.data.data);
-  const serachValueString = searchValue.toString()
-  // console.log(serachValueString);
-  if(isBarSearch){}
-  
-  
-  const [querySearch, setQuerySearch] = useState("");
+export const SearchBar = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
-  const inputRef = useRef<HTMLInputElement | null>(null); // Crie uma ref para o input
-  const isFocusedRef = useRef(false); // Ref para controlar o foco
-  // const querySearchData: QuerySearchState = {
-  //   querySearchh: querySearch,
-  // };
-  
-  useEffect(() => {
-    if (isFocusedRef.current && inputRef.current) {
-      inputRef.current.focus(); // Restaura o foco se estiver ativo
-      dispatch(setInputSearchValue(querySearch));
-      dispatch(loadSearchRequest(querySearch));
-    }
-    if (querySearch === "" && ishome === true) {
-      dispatch(loadRequest());
-      
-    }
-    // if (isBarSearch === true) {
-    //   dispatch(setInnitial());
-    //   dispatch(setNoneSearchValue())
-      
-    // }
-  }, [querySearch]);
-  useEffect(() => {
-    setQuerySearch("")
-    
 
-    }, [loadSearchByRequest])
-  
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuerySearch(e.target.value);
-    if(inputRef.current) {
-      inputRef.current.focus();
-    }
-    if(isFocusedRef.current && inputRef.current) {
-      inputRef.current.focus();
-    }
-    if (ishome === false) {
-      // navigate("/SearchPage");
-    }
-  };
-  const handleInputFocus = () => {
-    isFocusedRef.current = true; // Atualiza a ref para indicar que o input está com foco
+  const onSubmit = (data: any) => {
+    dispatch(loadSearchRequest(data.value));
+    dispatch(setInputSearchValue(data.value));
   };
 
-  const SearchInput = styled.input.attrs({ as: "input" })`
+  const SearchInput = styled.input`
     background-color: #ff000053;
     border-radius: 10rem;
     height: 4rem;
@@ -82,7 +31,7 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
     color: red;
   `;
 
-  const Wrapper = styled.div`
+  const Wrapper = styled.form`
     width: 100%;
     display: flex;
     justify-content: center;
@@ -102,22 +51,19 @@ export const SearchBar: FC<SearchBarProps> = ({ ishome, isBarSearch }) => {
   `;
 
   return (
-    <Wrapper>
-          <WrapperSun>
-            <Lupa
-              height={25}
-              src="/assets/busca/Lupa/Shape@2x.png"
-              alt="aaaaa"
-            ></Lupa>
-            <SearchInput
-              ref={inputRef}
-              type="text"
-              value={searchValue.length >= 1 ? querySearch: serachValueString}
-              onChange={handleInputChange}
-              onFocus={handleInputFocus}
-              placeholder="Procure por heróis"
-            />
-          </WrapperSun>
-        </Wrapper>
+    <Wrapper onSubmit={handleSubmit(onSubmit)}>
+      <WrapperSun>
+        <Lupa
+          height={25}
+          src="/assets/busca/Lupa/Shape@2x.png"
+          alt="lupa"
+        ></Lupa>
+        <SearchInput
+          type="text"
+          {...register("value", { required: true })}
+          placeholder="Procure por heróis"
+        />
+      </WrapperSun>
+    </Wrapper>
   );
 };

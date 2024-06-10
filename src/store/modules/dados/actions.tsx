@@ -8,6 +8,9 @@ export const setInputSearchValue = (value: string) =>
   export const setNoneSearchValue = () =>
   action(ActionDataTypes.RESET);
 
+  export const setThemee = (theme: string) =>
+  action(ActionDataTypes.THEME, theme);
+
  
   export const saveValueSuccess: any = (data: string) => 
     action(ActionDataTypes.SAVE_SUCCESS, { data });
