@@ -12,8 +12,10 @@ import { useEffect, useState } from "react";
 import { loadSearchByRequest } from "../store/modules/characters/actions";
 import CharactersList from "../components/CharactersList";
 import Footer from "../components/Footer";
-import { setNoneSearchValue } from "../store/modules/dados/actions";
-import { QuerySearchState } from "../store/modules/dados/types";
+import { setNoneSearchValue, setThemee } from "../store/modules/dados/actions";
+import { IconButton } from "@mui/material";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 const Background = styled.div`
   width: 100%;
@@ -22,6 +24,14 @@ const Background = styled.div`
   align-items: center;
   background-image: url("/assets/backCharacter.jpg");
   background-repeat: repeat; /* Esta linha faz a imagem se repetir para cobrir completamente o contêiner */
+`;
+
+const ThemeWrapper = styled.div`
+  background-color: ${({ theme }) => theme.backgroundColor};
+  color: ${({ theme }) => theme.color};
+  display: flex;
+  width: 100%;
+  justify-content: end;
 `;
 
 const CharacterWrapper = styled.div`
@@ -94,9 +104,10 @@ const Character = () => {
   );
 
   const searchValue = useSelector((state: DataState) => state.data.data);
+  const [theme, setTheme] = useState("");
   let searchV = searchValue;
 
-  const savedTheme = localStorage.getItem("theme") || '';
+  const savedTheme = localStorage.getItem("theme") || "";
   // console.log("searchValue", searchValue.length, searchValue);
   // console.log("heroes", characters);
 
@@ -146,94 +157,109 @@ const Character = () => {
     if (search === false) {
     }
   }, [loadSearchByRequest]);
-  // if (characters.length > 2) {
-  //   search = true;
-  // }
-  // if (characters.length === 1) {
-  //   search = false;
-  // }
-  // console.log('kl',character);
+
+  const handleToggleTheme = () => {
+    if (savedTheme === "dark") {
+      localStorage.setItem("theme", "light");
+      setTheme("light"); // Salva o tema escolhido
+      dispatch(setThemee(theme));
+    }
+    if (savedTheme === "light") {
+      localStorage.setItem("theme", "dark");
+      setTheme("dark"); // Salva o tema escolhido
+      dispatch(setThemee(theme));
+    }
+  };
 
   return (
     <div>
-    <ThemeProvider theme={{ color: savedTheme === "dark" ? "white" : "black", backgroundColor: savedTheme === "dark" ? "black" : "white" }}>
-
-
-      <NavSearch />
-      <Background>
-        {search ? (
-          <CharactersList />
-        ) : (
-          <div>
-            <CharacterWrapper>
-              <CharacterInfo>
-                {character.map((character) => (
-                  <HeaderWrapper key={character.id}>
-                    <HeaderA>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h2 style={{ fontSize: "2.4rem" }}>{character.name}</h2>{" "}
-                      </div>
-                      <DetailsP>{character.description}</DetailsP>
-                      <GridContainer>
-                        <FirstRowItem>
-                          Quadrinhos <br />{" "}
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "1rem",
-                            }}
-                          >
-                            <img
-                              width={30}
-                              src="/assets/icones/book/Group@3x.png"
-                              alt="logo quadrinhos"
-                            />
-                            {character.comics.available}
-                          </div>
-                        </FirstRowItem>
-                        <SecondRowItem>
-                          Filmes <br />{" "}
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "1rem",
-                            }}
-                          >
-                            <img
-                              width={30}
-                              src="/assets/icones/video/Shape@3x.png"
-                              alt="logo filmes"
-                            />
-                            {character.series.available}
-                          </div>
-                        </SecondRowItem>
-                      </GridContainer>
-                    </HeaderA>
-                    <HeaderB>
-                      <HeaderBImage
-                        src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                        alt="Hero Image"
-                      />
-                    </HeaderB>
-                  </HeaderWrapper>
-                ))}
-              </CharacterInfo>
-            </CharacterWrapper>
-            <ComicList />
-          </div>
-        )}
-      </Background>
-      <Footer />
-    </ThemeProvider>
-
+      <ThemeProvider
+        theme={{
+          color: savedTheme === "dark" ? "white" : "black",
+          backgroundColor: savedTheme === "dark" ? "black" : "white",
+        }}
+      >
+        <ThemeWrapper>
+          <IconButton onClick={handleToggleTheme} color="inherit">
+            {theme === "dark" ? <Brightness4Icon /> : <Brightness7Icon />}
+          </IconButton>
+        </ThemeWrapper>
+        <NavSearch />
+        <Background>
+          {search ? (
+            <CharactersList />
+          ) : (
+            <div>
+              <CharacterWrapper>
+                <CharacterInfo>
+                  {character.map((character) => (
+                    <HeaderWrapper key={character.id}>
+                      <HeaderA>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <h2 style={{ fontSize: "2.4rem" }}>
+                            {character.name}
+                          </h2>{" "}
+                        </div>
+                        <DetailsP>{character.description}</DetailsP>
+                        <GridContainer>
+                          <FirstRowItem>
+                            Quadrinhos <br />{" "}
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "1rem",
+                              }}
+                            >
+                              <img
+                                width={30}
+                                src="/assets/icones/book/Group@3x.png"
+                                alt="logo quadrinhos"
+                              />
+                              {character.comics.available}
+                            </div>
+                          </FirstRowItem>
+                          <SecondRowItem>
+                            Filmes <br />{" "}
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "1rem",
+                              }}
+                            >
+                              <img
+                                width={30}
+                                src="/assets/icones/video/Shape@3x.png"
+                                alt="logo filmes"
+                              />
+                              {character.series.available}
+                            </div>
+                          </SecondRowItem>
+                        </GridContainer>
+                      </HeaderA>
+                      <HeaderB>
+                        <HeaderBImage
+                          src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                          alt="Hero Image"
+                        />
+                      </HeaderB>
+                    </HeaderWrapper>
+                  ))}
+                </CharacterInfo>
+              </CharacterWrapper>
+              <ComicList />
+            </div>
+          )}
+        </Background>
+        <Footer />
+      </ThemeProvider>
     </div>
   );
 };

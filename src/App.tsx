@@ -13,6 +13,9 @@ import { useEffect, useState } from "react";
 import { QuerySearchState } from "./store/modules/dados/types";
 import { setThemee } from "./store/modules/dados/actions";
 import { loadRequest } from "./store/modules/characters/actions";
+import { IconButton } from "@mui/material";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 
 const lightTheme = {
@@ -30,6 +33,11 @@ const MainWrapper = styled.div`
   text-align: center;
   background-color: ${({ theme }) => theme.backgroundColor};
   color: ${({ theme }) => theme.color};
+  `;
+  const ThemeWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: end;
   `;
 
 function App() {
@@ -62,11 +70,13 @@ function App() {
         <GeistProvider>
           <CssBaseline />
           <MainWrapper>
+            <ThemeWrapper>
+            <IconButton onClick={handleToggleTheme} color="inherit">
+              {theme === "dark" ? <Brightness4Icon /> : <Brightness7Icon />}
+            </IconButton>
+            </ThemeWrapper>
             <Header /> 
-            <button onClick={() => handleToggleTheme()}>
-              {theme === "dark" ? "Dark" : "Light"}
-            </button>
-            <SearchBar ishome={true} isBarSearch={false} />
+            <SearchBar />
             <FilterBar />
             <Outlet />
             <CharactersList />
