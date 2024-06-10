@@ -12,17 +12,15 @@ export default function FilterBar() {
   const characters = useSelector(
     (state: ApplicationState) => state.characters.data
   );
-  const [theme, setTheme] = useState('');
   const querySearchValue = useSelector((state: DataState) => state.data.data);
   const globalTheme = useSelector((state: DataState) => state.data.data);
-
-  if(globalTheme) {
-    setTheme
-  }
-
+  const [theme, setTheme] = useState("e");
   const [query, setQuery] = useState("");
   // const query = querySearchValue.toString()
-  // console.log('query', query);
+  useEffect(() => {
+      setTheme(globalTheme?.toString());
+  }, [globalTheme])
+  
 
   const [orderby, setOrderby] = useState(false);
 
@@ -39,24 +37,20 @@ export default function FilterBar() {
       if (orderby === true) {
         dispatch(loadOrderbyRequest(orderby));
         setOrderby(false);
-        console.log("false", orderby);
       }
       if (orderby === false) {
         dispatch(loadOrderbyRequest(orderby));
         setOrderby(true);
-        console.log("true", orderby);
       }
     }
     if (query.length > 0) {
       if (orderby === true) {
         dispatch(loadSearchOrderbyRequest(orderby, query));
         setOrderby(false);
-        console.log("false", orderby);
       }
       if (orderby === false) {
         dispatch(loadSearchOrderbyRequest(orderby, query));
         setOrderby(true);
-        console.log("true", orderby);
       }
     }
   };
@@ -128,7 +122,7 @@ export default function FilterBar() {
   const secondImageUrl = "/assets/toggle/Group 2@3x.png";
 
   return (
-    <ThemeProvider theme={{ color: theme === "dark" ? "white" : "black", backgroundColor: theme === "dark" ? "black" : "white" }}>
+    <ThemeProvider theme={{ color: theme === "dark" || "" ? "white" : "black", backgroundColor: theme === "dark" || "" ? "black" : "white" }}>
     <MainWrapper>
       <WrapperA>
         <p>Encontrados {heroes} heróis</p>

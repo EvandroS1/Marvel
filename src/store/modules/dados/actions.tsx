@@ -11,6 +11,9 @@ export const setInputSearchValue = (value: string) =>
   export const setThemee = (theme: string) =>
   action(ActionDataTypes.THEME, theme);
 
+  export const saveThemee = (data: string) =>
+  action(ActionDataTypes.SAVE_THEME, data);
+
  
   export const saveValueSuccess: any = (data: string) => 
     action(ActionDataTypes.SAVE_SUCCESS, { data });

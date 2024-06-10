@@ -3,4 +3,5 @@ export enum ActionDataTypes {
   SAVE_SUCCESS= '@dados/SAVE_SUCCESS',
   RESET= '@dados/RESET',
   THEME= '@dados/THEME',
+  SAVE_THEME= '@dados/SAVE_THEME',
 }

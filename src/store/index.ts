@@ -13,6 +13,9 @@ export interface ApplicationState {
 export interface DataState {
   data: QuerySearchState
 }
+export interface ThemeState {
+  data: string
+}
 export interface ComicGlobalState {
   comics: ComicsState
 }

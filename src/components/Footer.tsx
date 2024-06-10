@@ -33,24 +33,24 @@ export default function Footer() {
   const savedTheme = localStorage.getItem("theme") || "";
   const globalTheme = useSelector((state: DataState) => state.data.data);
   const [theme, setTheme] = useState("");
-  const [globalThemeState, setglobalThemeState] = useState("");
-  if(globalTheme) {
-    setglobalThemeState
-  }
+  // const [globalThemeState, setglobalThemeState] = useState("");
+  // if(globalTheme) {
+  //   setglobalThemeState(globalTheme.toString())
+  // }
   useEffect(() => {
-    if (globalThemeState.length === 0) {
+    if (globalTheme.length === 0) {
       setTheme(savedTheme);
     }
     console.log("theme1", theme);
   }, []);
   useEffect(() => {
-    if (globalThemeState.length > 1) {
-      setTheme(globalThemeState);
+    if (globalTheme.length > 1) {
+      setTheme(globalTheme?.toString());
     }
     console.log("theme2", theme);
-    console.log("footer", globalThemeState.length);
+    console.log("footer", globalTheme.length);
     console.log("footer, savedTheme", theme);
-  }, [globalThemeState]);
+  }, [globalTheme]);
   useEffect(() => {
     console.log("theme3", theme);
   }, [theme]);
@@ -58,8 +58,8 @@ export default function Footer() {
   return (
     <ThemeProvider
       theme={{
-        color: globalThemeState === "dark" ? "white" : "black",
-        backgroundColor: globalThemeState === "dark" ? "black" : "white",
+        color: theme === "dark" ? "white" : "black",
+        backgroundColor: theme === "dark" ? "black" : "white",
       }}
     >
       <MainWrapper>

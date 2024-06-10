@@ -40,22 +40,25 @@ const MainWrapper = styled.div`
   `;
 
 function App() {
-  const savedTheme = localStorage.getItem("theme") || 'light';
+  const savedTheme = localStorage.getItem("theme") || '';
   const [theme, setTheme] = useState('')
   const dispatch = useDispatch()
 
   useEffect(() => {
     setTheme(savedTheme)
     dispatch(loadRequest())
+    if(savedTheme !== '') {
+      setThemee(theme)
+    }
   }, []);
   
     const handleToggleTheme = () => {
-  if (savedTheme === "dark") {
+  if (theme === "dark") {
     localStorage.setItem("theme", "light");
     setTheme('light') // Salva o tema escolhido
     dispatch(setThemee(theme))
   }
-  if (savedTheme === "light") {
+  if (theme === "light") {
     localStorage.setItem("theme", "dark");
     setTheme('dark') // Salva o tema escolhido
     dispatch(setThemee(theme))

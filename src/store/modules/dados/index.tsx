@@ -21,6 +21,10 @@ const reducer: Reducer<QuerySearchState> = (state = INITIAL_STATE, action) => {
         // console.log('payload',action.payload);
         
         return { ...state, loading: false, data: action.payload.data}
+      case ActionDataTypes.SAVE_THEME:
+        console.log('payload',action.payload);
+        
+        return { ...state, loading: false, data: action.payload}
     default:
       return state;
   }
